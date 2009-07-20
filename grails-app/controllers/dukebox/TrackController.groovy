@@ -24,24 +24,19 @@ class TrackController {
 	}
 
 	def save = {TrackUploadCommand command ->
-		try {
-			def trackInstance = libraryService.add(params.file)
+		if (command.hasErrors()) {
+			render(view: 'create', model: [command: command])
+		} else {
+			def trackInstance = libraryService.add(command.file.inputStream)
 			flash.message = "Track ${trackInstance.id} created"
 			redirect(action: show, id: trackInstance.id)
-		} catch (LibraryException e) {
-			flash.error =
-				render(view: 'create')
 		}
 	}
-}
 }
 
 class TrackUploadCommand {
 
 	MultipartFile file
-	String title
-	String artist
-	String album
 
 	static constraints = {
 		file nullable: false, validator: {MultipartFile self ->
@@ -49,20 +44,10 @@ class TrackUploadCommand {
 			try {
 				def istream = new BufferedInputStream(self.inputStream)
 				AudioSystem.getAudioFileFormat(istream)
-
-				File tmp = File.createTempFile(self.originalFilename, ".mp3")
-				self.transferTo tmp
-				IMusicMetadata metadata = new MyID3().read(tmp).simplified
-				println metadata.getArtist()
-				println metadata.getSongTitle()
-				println metadata.getAlbum()
-				println metadata.getYear()
 			} catch (UnsupportedAudioFileException e) {
 				return false
 			}
 			return true
 		}
-		title nullable: false, blank: false
-		artist nullable: false, blank: false
 	}
 }

@@ -20,9 +20,6 @@ class FileUploadTests extends FunctionalTestCase {
 		get "/track/create"
 
 		form {
-			title = "Bulletproof"
-			artist = "La Roux"
-			album = "La Roux"
 			click "Create"
 		}
 

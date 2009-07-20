@@ -1,4 +1,3 @@
-- Create new track only requires file, other info taken from ID3 tags
 - Sort out CSS & layout basics
 - Player picks random tracks and plays continuously (quartz job to fill queue?)
 - Now playing page shows current track info

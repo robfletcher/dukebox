@@ -16,9 +16,6 @@ class TrackControllerTests extends ControllerUnitTestCase {
 
 		assertFalse command.validate()
 
-		assertEquals "nullable", command.errors.title
-		assertEquals "nullable", command.errors.artist
-		assertNull command.errors.album
 		assertEquals "nullable", command.errors.file
 	}
 

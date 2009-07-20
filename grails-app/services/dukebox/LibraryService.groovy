@@ -7,6 +7,7 @@ import org.cmc.music.myid3.MyID3
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import org.springframework.web.multipart.MultipartFile
 import org.springframework.context.MessageSourceResolvable
+import org.apache.commons.io.IOUtils
 
 class LibraryService {
 
@@ -16,23 +17,18 @@ class LibraryService {
 		new File(ConfigurationHolder.config.library.basedir)
 	}
 
-	Track add(MultipartFile multipartFile) {
-		if (multipartFile.empty) throw new LibraryException("File is empty")
-		def istream = new BufferedInputStream(multipartFile.inputStream)
-		try {
-			AudioSystem.getAudioFileFormat(istream)
-		} catch (UnsupportedAudioFileException e) {
-			throw new LibraryException("File is invalid", e)
-		} finally {
-			istream.close()
-		}
-
+	Track add(InputStream istream) {
+		istream = new BufferedInputStream(istream)
 		Track.withTransaction {
 			def track = new Track()
 			track.filepath = "${UUID.randomUUID()}.mp3"
 
 			def file = new File(basedir, track.filepath)
-			multipartFile.transferTo file
+			file.withOutputStream { ostream ->
+				use(IOUtils) {
+					istream.copy(ostream)
+				}
+			}
 
 			def metadata = new MyID3().read(file).simplified
 			track.title = metadata.getSongTitle()
@@ -44,18 +40,6 @@ class LibraryService {
 			track.save()
 			return track
 		}
-	}
-
-}
-
-class LibraryException extends RuntimeException {
-
-	LibraryException(String message) {
-		super(defaultMessage)
-	}
-
-	LibraryException(String message, Throwable cause) {
-		super(message, cause)
 	}
 
 }

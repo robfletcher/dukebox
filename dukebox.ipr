@@ -215,7 +215,7 @@
   </component>
   <component name="ProjectFileVersion" converted="true" />
   <component name="ProjectKey">
-    <option name="state" value="project:///Users/rob/IdeaProjects/dukebox/dukebox.ipr" />
+    <option name="state" value="project:///home/rob/workspace/Dukebox/dukebox.ipr" />
   </component>
   <component name="ProjectModuleManager">
     <modules>
@@ -333,7 +333,7 @@
     </library>
   </component>
   <UsedPathMacros>
-    <macro name="USER_HOME" description="" />
+    <macro name="USER_HOME" />
   </UsedPathMacros>
 </project>
 

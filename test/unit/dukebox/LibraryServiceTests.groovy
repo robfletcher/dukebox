@@ -10,7 +10,6 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 	LibraryService libraryService
 	File basedir
 	File mp3File
-	MockMultipartFile multipartFile
 
 	void setUp() {
 		super.setUp()
@@ -22,10 +21,7 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		mockDomain(Track)
 		Track.metaClass.static.withTransaction = {Closure closure -> closure() }
 
-		mp3File = new File("larouxbulletproof.mp3")
-		mp3File.withInputStream {istream ->
-			multipartFile = new MockMultipartFile(mp3File.name, istream)
-		}
+		mp3File = new File("sample.mp3")
 
 		libraryService = new LibraryService()
 	}
@@ -36,28 +32,17 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		basedir.deleteDir()
 	}
 
-	void testAddFailsForEmptyFile() {
-		def emptyMultipartFile = new MockMultipartFile(mp3File.name, new byte[0])
-		shouldFail(LibraryException) {
-			libraryService.add(emptyMultipartFile)
-		}
-	}
-
-	void testAddFailsForInvalidFile() {
-		def emptyMultipartFile = new MockMultipartFile(mp3File.name, RandomStringUtils.random(1024).bytes)
-		shouldFail(LibraryException) {
-			libraryService.add(emptyMultipartFile)
-		}
-	}
-
 	void testAddCreatesTrackAndFile() {
-		def track = libraryService.add(multipartFile)
+		def track
+		mp3File.withInputStream {istream ->
+			track = libraryService.add(istream)
+		}
 
-		assertEquals("04 Bulletproof - Album Version", track.title)
-		assertEquals("La Roux", track.artist)
-		assertEquals("Bulletproof Remixes", track.album)
-		assertEquals(4, track.trackNo)
-		assertEquals(2009, track.year)
+		assertEquals("Fake French", track.title)
+		assertEquals("Le Tigre", track.artist)
+		assertEquals("The Wired Cd: Rip. Sample. Mash. Share. ", track.album)
+		assertEquals(9, track.trackNo)
+		assertEquals(2004, track.year)
 
 		assertTrue track.file.isFile()
 		use(FileUtils) {
