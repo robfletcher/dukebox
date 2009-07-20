@@ -19,10 +19,11 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 
 		Role.withTransaction {
 			Role.list().each {role ->
-				role.people.each {
-					role.removeFromPeople it
-					it.delete()
-				}
+				role.people = []
+				role.save()
+			}
+			User.list().each { user ->
+				user.delete()
 			}
 		}
 	}

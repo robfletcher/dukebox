@@ -1,14 +1,12 @@
 package dukebox.auth
 
 import org.codehaus.groovy.grails.plugins.springsecurity.RedirectUtils
-import org.grails.plugins.springsecurity.service.AuthenticateService
-
 import org.springframework.security.AuthenticationTrustResolverImpl
 import org.springframework.security.DisabledException
-import org.springframework.security.context.SecurityContextHolder as SCH
-import org.springframework.security.ui.AbstractProcessingFilter
-import org.springframework.security.ui.webapp.AuthenticationProcessingFilter
 import org.springframework.security.context.SecurityContextHolder
+import org.springframework.security.ui.AbstractProcessingFilter
+import org.springframework.security.ui.openid.OpenIDConsumerException
+import org.springframework.security.ui.webapp.AuthenticationProcessingFilter
 
 /**
  * Login Controller (Example).

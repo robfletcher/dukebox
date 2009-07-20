@@ -6,6 +6,7 @@ import dukebox.auth.Role
 import org.springframework.security.providers.UsernamePasswordAuthenticationToken as AuthToken
 import org.springframework.security.context.SecurityContextHolder as SCH
 import org.springframework.security.context.SecurityContextHolder
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 /**
  * Registration controller.
@@ -150,11 +151,13 @@ class RegisterController {
 			return
 		}
 
-		if (params.captcha.toUpperCase() != session.captcha) {
-			person.passwd = ''
-			flash.message = 'Access code did not match.'
-			render view: 'index', model: [person: person]
-			return
+		if (!ConfigurationHolder.config.captcha.disabled) {
+			if (params.captcha.toUpperCase() != session.captcha) {
+				person.passwd = ''
+				flash.message = 'Access code did not match.'
+				render view: 'index', model: [person: person]
+				return
+			}
 		}
 
 		if (params.passwd != params.repasswd) {

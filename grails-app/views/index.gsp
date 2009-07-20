@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>Welcome to Grails</title>
+        <title>Welcome to Dukebox</title>
 		<meta name="layout" content="main" />
     </head>
     <body>
