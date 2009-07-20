@@ -84,3 +84,5 @@ jawr {
 
 library.basedir = "${System.properties.'java.io.tmpdir'}/dukebox/library"
      
+
+//log4j.logger.org.springframework.security='off,stdout'

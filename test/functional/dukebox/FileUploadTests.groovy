@@ -1,22 +1,27 @@
 package dukebox
 
-import functionaltestplugin.FunctionalTestCase
-import com.gargoylesoftware.htmlunit.html.HtmlFileInput
+import dukebox.AbstractFunctionalTestCase
 
-class FileUploadTests extends FunctionalTestCase {
+class FileUploadTests extends AbstractFunctionalTestCase {
 
 	File testFile
 
 	void setUp() {
 		super.setUp()
 
-		def port = System.properties."server.port" ?: 8080
-		baseURL = "http://localhost:${port}/dukebox"
+		createUser()
 
 		testFile = new File("sample.mp3")
 	}
 
+	void testMustBeLoggedInToUpload() {
+		get "/track/create"
+		assertTitle "Login"
+	}
+
 	void testFileIsMandatory() {
+		login()
+		
 		get "/track/create"
 
 		form {
@@ -28,6 +33,8 @@ class FileUploadTests extends FunctionalTestCase {
 	}
 
 	void testSuccessfulFileUpload() {
+		login()
+
 		get "/track/create"
 
 		byId("file").valueAttribute = testFile.absolutePath

@@ -4,10 +4,6 @@ import dukebox.Track
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.UnsupportedAudioFileException
 import org.springframework.web.multipart.MultipartFile
-import org.cmc.music.myid3.MyID3
-import org.cmc.music.metadata.MusicMetadataSet
-import org.cmc.music.metadata.MusicMetadata
-import org.cmc.music.metadata.IMusicMetadata
 
 class TrackController {
 

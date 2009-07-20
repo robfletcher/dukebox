@@ -2200,21 +2200,24 @@
     </option>
     <option name="fullPluginsInfo">
       <map>
-        <entry key="jawr">
+        <entry key="acegi">
           <value>
             <GrailsPlugin>
-              <option name="author" value="Jordi Hern√°ndez Sell√©s" />
-              <option name="description" value="&#9;&#9;Jawr is a tunable packaging solution for Javascript and CSS which allows for rapid development of resources " />
-              <option name="email" value="jordihs@dev.java.net" />
-              <option name="name" value="jawr" />
-              <option name="release" value="2.8" />
-              <option name="title" value="Name: jawr&#9;| Latest release: 2.8" />
-              <option name="url" value="https://jawr.dev.java.net" />
+              <option name="author" value="Tsuyoshi Yamamoto" />
+              <option name="email" value="tyama@xmldo.jp" />
+              <option name="name" value="acegi" />
+              <option name="release" value="0.5.1" />
+              <option name="title" value="Name: acegi&#9;| Latest release: 0.5.1" />
+              <option name="url" value="http://grails.org/AcegiSecurity+Plugin" />
               <option name="versions">
                 <set>
-                  <option value="2.0" />
-                  <option value="2.51" />
-                  <option value="2.8" />
+                  <option value="0.2" />
+                  <option value="0.2.1" />
+                  <option value="0.3" />
+                  <option value="0.4" />
+                  <option value="0.4.1" />
+                  <option value="0.5" />
+                  <option value="0.5.1" />
                 </set>
               </option>
             </GrailsPlugin>
@@ -2226,6 +2229,11 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/grails-app/taglib" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/src/java" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/functional-test-1.2.7/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/grails-app/taglib" isTestSource="false" />
@@ -2257,9 +2265,11 @@
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/functional-test-1.2.7/lib" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/lib" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/functional-test-1.2.7/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/hibernate-1.2-M1/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/lib" recursive="false" />

@@ -15,7 +15,6 @@ class PlayerService {
 			def tracks = Track.list()
 			tracks.each {track ->
 				println "Playing $track"
-				AudioSystem
 				track.withInputStream {istream ->
 					def player = new AdvancedPlayer(istream)
 					player.playBackListener = new PlaybackListenerImpl()
