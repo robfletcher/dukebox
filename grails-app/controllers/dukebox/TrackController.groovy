@@ -28,7 +28,9 @@ class TrackController {
 			render(view: 'create', model: [command: command])
 		} else {
 			def trackInstance = libraryService.add(command.file.inputStream)
-			flash.message = "Track ${trackInstance.id} created"
+			flash.message = "track.created"
+			flash.args = [trackInstance.title, trackInstance.artist]
+			flash.defaultMessage = "$trackInstance uploaded"
 			redirect(action: show, id: trackInstance.id)
 		}
 	}

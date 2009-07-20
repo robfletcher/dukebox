@@ -1,4 +1,5 @@
 - Sort out CSS & layout basics
+- Jawr
 - Player picks random tracks and plays continuously (quartz job to fill queue?)
 - Now playing page shows current track info
 - Now playing page refreshes when new track plays
