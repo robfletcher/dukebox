@@ -1,8 +1,9 @@
-- Sort out CSS & layout basics
 - Create new track only requires file, other info taken from ID3 tags
-- Player picks random tracks and plays continuously (quarz job to fill queue?)
+- Sort out CSS & layout basics
+- Player picks random tracks and plays continuously (quartz job to fill queue?)
 - Now playing page shows current track info
 - Now playing page refreshes when new track plays
+- Handle missing ID3 tags on create (webflow?)
 - User can register and log in
 - User information saved when tracks uploaded/edited
 - Now Playing page is index
@@ -17,6 +18,7 @@
 - Now playing page displays album art (Amazon)
 - Now playing page shows upcoming tracks
 - Player skips tracks already played in last x hours (remain in queue)
+- Link to album in track list/search results shows all tracks in album
 - Users can rate tracks
 - Player prefers 'popular' tracks when nothing queued
 - Support OGG Vorbis

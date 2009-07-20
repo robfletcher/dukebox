@@ -9,14 +9,18 @@ class Track {
 	String title
 	String artist
 	String album
-	DateTime dateCreated
-	DateTime lastUpdated
-	DateTime lastPlayed
-	int playCount = 0
+	Integer trackNo
+	Integer year
 
 //	User uploadedBy
 //	User lastModifiedBy
+	DateTime dateCreated
+	DateTime lastUpdated
+
 //	User lastPlayedBy
+	DateTime lastPlayed
+	int playCount = 0
+
 
 	// path to file on disk relative to root defined in Config.groovy
 	String filepath
@@ -25,6 +29,8 @@ class Track {
 		title()
 		artist()
 		album nullable: true, blank: true
+		trackNo nullable: true
+		year nullable: true
 		lastPlayed nullable: true
     }
 
@@ -33,13 +39,15 @@ class Track {
 		lastUpdated type: PersistentDateTime
 	}
 
-	static transients = ["inputStream"]
+	static transients = ["file", "inputStream"]
+
+	File getFile() {
+		def basedir = new File(ConfigurationHolder.config.library.basedir)
+		def file = new File(basedir, filepath)
+		return file
+	}
 
 	InputStream getInputStream() {
-		def basedir = new File(ConfigurationHolder.config.library.basedir)
-		assert basedir.isDirectory()
-		def file = new File(basedir, filepath)
-		assert file.isFile()
 		return new FileInputStream(file)
 	}
 

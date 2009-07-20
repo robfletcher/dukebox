@@ -4,6 +4,10 @@ import dukebox.Track
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.UnsupportedAudioFileException
 import org.springframework.web.multipart.MultipartFile
+import org.cmc.music.myid3.MyID3
+import org.cmc.music.metadata.MusicMetadataSet
+import org.cmc.music.metadata.MusicMetadata
+import org.cmc.music.metadata.IMusicMetadata
 
 class TrackController {
 
@@ -19,25 +23,17 @@ class TrackController {
 		return [command: command]
 	}
 
-	def save = { TrackUploadCommand command ->
-		if (command.hasErrors()) {
-			render(view: 'create', model: [command: command])
-		} else {
-			def trackInstance = new Track(title: command.title, artist: command.artist, album: command.album)
-			trackInstance.filepath = "${UUID.randomUUID()}.mp3"
-			// TODO: move to libraryService
-			File libraryFile = new File(libraryService.basedir, trackInstance.filepath)
-			command.file.transferTo libraryFile
-
-			if (trackInstance.save()) {
-				flash.message = "Track ${trackInstance.id} created"
-				redirect(action: show, id: trackInstance.id)
-			}
-			else {
-				render(view: 'create', model: [trackInstance: trackInstance])
-			}
+	def save = {TrackUploadCommand command ->
+		try {
+			def trackInstance = libraryService.add(params.file)
+			flash.message = "Track ${trackInstance.id} created"
+			redirect(action: show, id: trackInstance.id)
+		} catch (LibraryException e) {
+			flash.error =
+				render(view: 'create')
 		}
 	}
+}
 }
 
 class TrackUploadCommand {
@@ -48,11 +44,19 @@ class TrackUploadCommand {
 	String album
 
 	static constraints = {
-		file nullable: false, validator: { MultipartFile self ->
+		file nullable: false, validator: {MultipartFile self ->
 			if (self.empty) return false
 			try {
 				def istream = new BufferedInputStream(self.inputStream)
 				AudioSystem.getAudioFileFormat(istream)
+
+				File tmp = File.createTempFile(self.originalFilename, ".mp3")
+				self.transferTo tmp
+				IMusicMetadata metadata = new MyID3().read(tmp).simplified
+				println metadata.getArtist()
+				println metadata.getSongTitle()
+				println metadata.getAlbum()
+				println metadata.getYear()
 			} catch (UnsupportedAudioFileException e) {
 				return false
 			}
