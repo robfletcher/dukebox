@@ -1,0 +1,12 @@
+/*
+ * Consistent cross-browser font size.
+ * Based on http://www.codecouch.com/2007/04/how-to-get-consistent-font-sizes-across-all-browsers/
+ */
+html>body {
+    font-size: 11px;
+    #font-size : 68 %;
+}
+
+body {
+    #font-size : 68 %;
+}

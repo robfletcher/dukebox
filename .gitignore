@@ -1,0 +1,4 @@
+test/reports
+web-app/plugins
+*.log
+*.iws
