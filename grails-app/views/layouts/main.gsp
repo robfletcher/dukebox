@@ -3,13 +3,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 	<head>
 		<title><g:layoutTitle default="Grails"/></title>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'fontfix.css')}"/>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'clearfix.css')}"/>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'base.css')}"/>
-		<link rel="stylesheet" href="${resource(dir: 'css', file: 'forms.css')}"/>
+		<jawr:style src="/bundles/dukebox.css"/>
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
 		<g:layoutHead/>
-		<g:javascript library="application"/>
+		<jawr:script src="/bundles/dukebox.js"/>
 	</head>
 	<body>
 		<div id="spinner" class="spinner" style="display:none;">

@@ -69,5 +69,18 @@ log4j = {
     warn   'org.mortbay.log'
 }
 
-library.basedir = "${System.properties.'java.io.tmpdir'}/dukebox"
+jawr {
+    js {
+        bundle.names = 'dukebox'
+        bundle.dukebox.id = '/bundles/dukebox.js'
+		bundle.dukebox.mappings='/js/application.js'
+    }
+    css {
+        bundle.names = 'dukebox'
+        bundle.dukebox.id = '/bundles/dukebox.css'
+        bundle.dukebox.mappings = '/css/**'
+    }
+}
+
+library.basedir = "${System.properties.'java.io.tmpdir'}/dukebox/library"
      
