@@ -6,9 +6,7 @@
 		<title><g:message code="player.index.title" default="Dukebox Player"/></title>
 	</head>
 	<body>
-		<g:applyLayout name="menu">
-			<li><g:link class="list" action="list"><g:message code="track.list" default="Track List"/></g:link></li>
-		</g:applyLayout>
+		<g:applyLayout name="menu"/>
 		<div class="body">
 			<g:if test="${currentTrack}">
 				<p><g:message code="player.playing.now" args="[currentTrack.title, currentTrack.artist]" default="Now playing: {0} by {1}"/></p>

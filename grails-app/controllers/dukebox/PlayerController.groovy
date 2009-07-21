@@ -4,10 +4,6 @@ class PlayerController {
 
 	def playerService
 
-	def beforeInterceptor = {
-		log.fatal actionName
-	}
-
 	def index = {
 		return [currentTrack: playerService.currentTrack]
 	}

@@ -69,7 +69,8 @@ log4j = {
 
     warn   'org.mortbay.log'
 
-	debug  'grails.app.service.dukebox.PlayerService'
+	debug  'grails.app.service.dukebox.PlayerService',
+	       'dukebox.Player'
 }
 
 jawr {

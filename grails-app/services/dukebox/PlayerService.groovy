@@ -1,7 +1,6 @@
 package dukebox
 
 import dukebox.Track
-import java.util.concurrent.CountDownLatch
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.atomic.AtomicReference
 import javazoom.jl.player.advanced.AdvancedPlayer
@@ -14,12 +13,9 @@ class PlayerService implements DisposableBean {
 
 	static transactional = false
 
-	private final AtomicReference<Track> currentTrackRef = new AtomicReference()
-	private final AtomicReference<AdvancedPlayer> playerRef = new AtomicReference()
-	private final listeners = []
-
 	private final AtomicBoolean aliveFlag = new AtomicBoolean(false)
-	private CountDownLatch aliveLatch
+	private final AtomicReference<Track> currentTrackRef = new AtomicReference()
+	private AdvancedPlayer player
 
 	Track getCurrentTrack() { currentTrackRef.get() }
 
@@ -32,7 +28,6 @@ class PlayerService implements DisposableBean {
 				aliveFlag.set(false)
 			} else {
 				log.info "starting..."
-				aliveLatch = new CountDownLatch(1)
 				while (aliveFlag.get()) {
 					def tracks = Track.list()
 					log.debug "found ${tracks.size()} tracks..."
@@ -47,43 +42,36 @@ class PlayerService implements DisposableBean {
 					}
 
 					log.debug "playing $track..."
-					currentTrackRef.set(track)
-					fireListeners()
-
-					log.debug "starting playback..."
-					try {
-						track.withInputStream {istream ->
-							def player = new AdvancedPlayer(istream)
-							if (log.isDebugEnabled()) {
-								player.playBackListener = new LoggingPlaybackListener(log)
-							}
-							player.play()
-							playerRef.set(player)
-						}
-					} catch (IOException e) {
-						log.error "problem reading file...", e
-					} finally {
-						playerRef.set(null)
-					}
+					createPlayer(track)
+					player.play()
 				}
 			}
 
 			log.info "stopping..."
 			currentTrackRef.set(null)
-			aliveLatch.countDown()
 		}
+	}
+
+	private synchronized void createPlayer(Track track) {
+		player = new AdvancedPlayer(track.inputStream)
+		player.playBackListener = [
+				playbackStarted: {PlaybackEvent event ->
+					log.debug "playback started..."
+					currentTrackRef.set(track)
+				},
+				playbackFinished: {PlaybackEvent event ->
+					log.debug "playback finished..."
+					currentTrackRef.set(null)
+				}
+		] as PlaybackListener
 	}
 
 	void stop() {
 		aliveFlag.set(false)
-		playerRef.get()?.stop()
-	}
-
-	void stopAndWait() {
-		stop()
-		if (aliveLatch) {
-			aliveLatch.await()
-			log.info "stopped..."
+		try {
+			player?.stop()
+		} catch (Exception e) {
+			log.error "Caught exception stopping playback: $e.message"
 		}
 	}
 
@@ -93,43 +81,6 @@ class PlayerService implements DisposableBean {
 		stop()
 	}
 
-	void addListener(TrackChangeListener listener) {
-		listeners << listener
-	}
-
-	boolean removeListener(TrackChangeListener listener) {
-		listeners.remove(listener)
-	}
-
-	void removeAllListeners() {
-		listeners.clear()
-	}
-
-	void fireListeners() {
-		listeners*.trackChanged()
-	}
-
-}
-
-interface TrackChangeListener {
-	void trackChanged()
-}
-
-class LoggingPlaybackListener extends PlaybackListener {
-
-	private final log
-
-	LoggingPlaybackListener(log) {
-		this.log = log
-	}
-
-	void playbackStarted(PlaybackEvent evt) {
-		log.debug "playback started..."
-	}
-
-	void playbackFinished(PlaybackEvent evt) {
-		log.debug "playback finished..."
-	}
 }
 
 class RandomSelectionCategory {
