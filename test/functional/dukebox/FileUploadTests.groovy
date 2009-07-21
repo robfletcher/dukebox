@@ -4,14 +4,9 @@ import dukebox.AbstractFunctionalTestCase
 
 class FileUploadTests extends AbstractFunctionalTestCase {
 
-	File testFile
-
 	void setUp() {
 		super.setUp()
-
 		createUser()
-
-		testFile = new File("sample.mp3")
 	}
 
 	void testMustBeLoggedInToUpload() {
@@ -34,16 +29,7 @@ class FileUploadTests extends AbstractFunctionalTestCase {
 
 	void testSuccessfulFileUpload() {
 		login()
-
-		get "/track/create"
-
-		byId("file").valueAttribute = testFile.absolutePath
-		form {
-			click "Create"
-		}
-
-		assertTitle "Show Track"
-		assertContentContains "Fake French by Le Tigre uploaded"
+		uploadTrack()
 	}
 
 }

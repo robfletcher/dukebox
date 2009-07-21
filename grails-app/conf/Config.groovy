@@ -68,6 +68,8 @@ log4j = {
 	       'org.hibernate'
 
     warn   'org.mortbay.log'
+
+	debug  'grails.app.service.dukebox.PlayerService'
 }
 
 jawr {

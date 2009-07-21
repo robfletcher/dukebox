@@ -7,11 +7,15 @@ import org.codehaus.groovy.grails.commons.ApplicationHolder
 
 abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 
+	File testFile
+
 	void setUp() {
 		super.setUp()
 
 		def port = System.properties."server.port" ?: 8080
 		baseURL = "http://localhost:${port}/dukebox"
+
+		testFile = new File("sample.mp3")
 	}
 
 	void tearDown() {
@@ -22,8 +26,11 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 				role.people = []
 				role.save()
 			}
-			User.list().each { user ->
+			User.list().each {user ->
 				user.delete()
+			}
+			Track.list().each {track ->
+				track.delete()
 			}
 		}
 	}
@@ -51,4 +58,18 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 	void logout() {
 		get "/logout"
 	}
+
+	void uploadTrack() {
+		get "/track/create"
+		assertTitle "Create Track"
+
+		byId("file").valueAttribute = testFile.absolutePath
+		form {
+			click "Create"
+		}
+
+		assertTitle "Show Track"
+		assertContentContains "Fake French by Le Tigre uploaded"
+	}
+
 }

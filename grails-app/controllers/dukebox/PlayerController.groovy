@@ -4,22 +4,22 @@ class PlayerController {
 
 	def playerService
 
+	def beforeInterceptor = {
+		log.fatal actionName
+	}
+
 	def index = {
-		render {
-			html {
-				head {
-					title("Player")
-				}
-				body {
-					a(href: "play", "Play")
-				}
-			}
-		}
+		return [currentTrack: playerService.currentTrack]
 	}
 
 	def play = {
 		playerService.play()
-		forward action: "index"
+		redirect action: "index"
+	}
+
+	def stop = {
+		playerService.stop()
+		redirect action: "index"
 	}
 
 }

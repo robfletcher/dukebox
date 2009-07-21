@@ -21,7 +21,6 @@ class Track {
 	DateTime lastPlayed
 	int playCount = 0
 
-
 	// path to file on disk relative to root defined in Config.groovy
 	String filepath
 
@@ -32,6 +31,7 @@ class Track {
 		trackNo nullable: true
 		year nullable: true
 		lastPlayed nullable: true
+		filepath unique: true
     }
 
 	static mapping = {
@@ -48,6 +48,8 @@ class Track {
 	}
 
 	InputStream getInputStream() {
+		def file = getFile()
+		if (!file.isFile()) throw new FileNotFoundException("${file?.absolutePath} not found")
 		return new FileInputStream(file)
 	}
 
@@ -59,6 +61,16 @@ class Track {
 		} finally {
 			istream?.close()
 		}
+	}
+
+	int hashCode() {
+		filepath?.hashCode() ?: 0
+	}
+
+	boolean equals(o) {
+		if (this.is(o)) return true
+		if (!(o instanceof Track)) return false
+		return filepath == o.filepath
 	}
 
 	String toString() {
