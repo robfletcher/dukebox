@@ -53,16 +53,6 @@ class Track {
 		return new FileInputStream(file)
 	}
 
-	def withInputStream(Closure closure) {
-		def istream
-		try {
-			istream = getInputStream()
-			closure(istream)
-		} finally {
-			istream?.close()
-		}
-	}
-
 	int hashCode() {
 		filepath?.hashCode() ?: 0
 	}

@@ -20,7 +20,4 @@ class TrackTests extends GrailsUnitTestCase {
         super.tearDown()
     }
 
-    void testWithInputStream() {
-
-    }
 }

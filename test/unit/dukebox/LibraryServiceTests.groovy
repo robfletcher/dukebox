@@ -10,6 +10,7 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 	LibraryService libraryService
 	File basedir
 	File mp3File
+	File noTagsFile
 
 	void setUp() {
 		super.setUp()
@@ -22,6 +23,7 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		Track.metaClass.static.withTransaction = {Closure closure -> closure() }
 
 		mp3File = new File("sample.mp3")
+		noTagsFile = new File("notags.mp3")
 
 		libraryService = new LibraryService()
 	}
@@ -50,6 +52,21 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		}
 
 		assertEquals 1, Track.count()
+	}
+
+	void testAddReturnsTrackWithErrorsWhenTagsMissingFromFile() {
+		def track
+		noTagsFile.withInputStream {istream ->
+			track = libraryService.add(istream)
+		}
+
+		assertTrue track.hasErrors()
+		assertEquals "nullable", track.errors.title
+		assertEquals "nullable", track.errors.artist
+
+		assertFalse track.file.isFile()
+
+		assertEquals 0, Track.count()
 	}
 
 }

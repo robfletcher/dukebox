@@ -37,7 +37,9 @@ class LibraryService {
 			track.trackNo = metadata.getTrackNumberNumeric()
 			track.year = metadata.getYear()
 
-			track.save()
+			if (!track.save()) {
+				file.delete()
+			}
 			return track
 		}
 	}
