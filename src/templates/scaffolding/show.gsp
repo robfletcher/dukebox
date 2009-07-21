@@ -7,11 +7,10 @@
         <title><g:message code="${domainClass.propertyName}.show" default="Show ${className}" /></title>
     </head>
     <body>
-        <div class="nav">
-            <span class="menuButton"><a class="home" href="\${createLinkTo(dir: '')}"><g:message code="home" default="Home" /></a></span>
-            <span class="menuButton"><g:link class="list" action="list"><g:message code="${domainClass.propertyName}.list" default="${className} List" /></g:link></span>
-            <span class="menuButton"><g:link class="create" action="create"><g:message code="${domainClass.propertyName}.new" default="New ${className}" /></g:link></span>
-        </div>
+		<g:applyLayout name="menu">
+			<li><g:link class="list" action="list"><g:message code="track.list" default="Track List"/></g:link></li>
+			<li><g:link class="create" action="create"><g:message code="${domainClass.propertyName}.new" default="New ${className}" /></g:link></li>
+		</g:applyLayout>
         <div class="body">
             <h1><g:message code="${domainClass.propertyName}.show" default="Show ${className}" /></h1>
             <g:if test="\${flash.message}">

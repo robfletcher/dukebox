@@ -1,4 +1,4 @@
-- Sort out CSS & layout basics - add menu layout gsp
+- Sort out CSS & layout basics
 - Reskin Acegi pages
 - Player picks random tracks and plays continuously (quartz job to fill queue?)
 - Now playing page shows current track info

@@ -10,6 +10,7 @@
           <root url="file://$MODULE_DIR$/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/functional-test-1.2.7/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/web-app" relative="/" />
         </webroots>
         <sourceRoots />
         <building>
