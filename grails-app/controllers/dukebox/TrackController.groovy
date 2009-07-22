@@ -37,6 +37,9 @@ class TrackController {
 						failure()
 					} else {
 						flow.trackId = track.id
+						flash.message = "track.created"
+						flash.args = [track.title, track.artist]
+						flash.defaultMessage = "$track uploaded"
 						success()
 					}
 				}
@@ -49,17 +52,7 @@ class TrackController {
 			}.to("upload")
 		}
 		finished {
-			println "finished..."
-//			def track = Track.get(flow.trackId)
-//			flash.message = "track.created"
-//			flash.args = [track.title, track.artist]
-//			flash.defaultMessage = "$track uploaded"
-//			println "redirecting to show for track $track with id $track.id..."
-//			redirect(controller: "track", action: "show", id: track.id)
-			redirect action: list
-		}
-		meh {
-			println "meh..."
+			redirect(controller: "track", action: "show", id: flow.trackId)
 		}
 	}
 
