@@ -1,3 +1,8 @@
+BUGS
+- file is not saved when additional track info entered
+- player attempts to play tracks with invalid files
+
+BACKLOG
 - Sort out CSS & layout basics
 - Reskin Acegi pages
 - Now playing page refreshes when new track plays
