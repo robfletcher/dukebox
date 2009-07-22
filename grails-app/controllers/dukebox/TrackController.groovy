@@ -60,17 +60,7 @@ class TrackController {
 		log.error "Should not be here..."
 		response.sendError HttpServletResponse.SC_BAD_REQUEST
 	}
-//	def save = {TrackUploadCommand command ->
-//		if (command.hasErrors()) {
-//			render(view: 'create', model: [command: command])
-//		} else {
-//			def trackInstance = libraryService.add(command.file.inputStream)
-//			flash.message = "track.created"
-//			flash.args = [trackInstance.title, trackInstance.artist]
-//			flash.defaultMessage = "$trackInstance uploaded"
-//			redirect(action: show, id: trackInstance.id)
-//		}
-//	}
+
 }
 
 class TrackUploadCommand implements Serializable {
