@@ -43,8 +43,8 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		assertEquals("Fake French", track.title)
 		assertEquals("Le Tigre", track.artist)
 		assertEquals("The Wired Cd: Rip. Sample. Mash. Share. ", track.album)
-		assertEquals(9, track.trackNo)
-		assertEquals(2004, track.year)
+		assertEquals("9", track.trackNo)
+		assertEquals("2004", track.year)
 
 		assertTrue track.file.isFile()
 		use(FileUtils) {
