@@ -30,14 +30,10 @@ class TrackController {
 				if (flow.trackInstance.hasErrors()) {
 					failure()
 				} else {
-					println "id = $flow.trackInstance.id"
-					flash.message = "track.created"
-					flash.args = [flow.trackInstance.title, flow.trackInstance.artist]
-					flash.defaultMessage = "$flow.trackInstance uploaded"
 					success()
 				}
 			}
-			on("success").to("finished")
+			on("success").to("confirmUpload")
 			on("failure").to("enterDetails")
 		}
 		enterDetails {
@@ -46,12 +42,18 @@ class TrackController {
 				if (!flow.trackInstance.save()) {
 					return error()
 				}
-				println "id = $flow.trackInstance.id"
-			}.to("finished")
+			}.to("confirmUpload")
 		}
-		finished {
-			redirect(controller: "track", action: "show", id: flow.trackInstance.id)
+		confirmUpload() {
+			action {
+				flash.message = "track.created"
+				flash.args = [flow.trackInstance.title, flow.trackInstance.artist]
+				flash.defaultMessage = "$flow.trackInstance uploaded"
+				success()
+			}
+			on("success").to("showTrack")
 		}
+		showTrack()
 	}
 
 	def save = {

@@ -68,7 +68,7 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 			click "Create"
 		}
 
-		assertTitle "Show Track"
+		assertTitle "Track Uploaded"
 		assertContentContains "Fake French by Le Tigre uploaded"
 	}
 

@@ -10,6 +10,7 @@ class FileUploadTests extends AbstractFunctionalTestCase {
 		super.setUp()
 		createUser()
 		noTagsFile = new File("notags.mp3")
+		assertTrue noTagsFile.isFile()
 	}
 
 	void testMustBeLoggedInToUpload() {
@@ -69,7 +70,8 @@ class FileUploadTests extends AbstractFunctionalTestCase {
 			click "Update"
 		}
 
-		assertTitle "Show Track"
+		assertTitle "Track Uploaded"
+		assertContentContains "Fake French by Le Tigre uploaded"
 	}
 
 }

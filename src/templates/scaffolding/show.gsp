@@ -9,7 +9,7 @@
     <body>
 		<g:applyLayout name="menu">
 			<li><g:link class="list" action="list"><g:message code="track.list" default="Track List"/></g:link></li>
-			<li><g:link class="create" action="create"><g:message code="${domainClass.propertyName}.new" default="New ${className}" /></g:link></li>
+			<li><g:link class="create" action="create"><g:message code="${domainClass.propertyName}.create" default="New ${className}" /></g:link></li>
 		</g:applyLayout>
         <div class="body">
             <h1><g:message code="${domainClass.propertyName}.show" default="Show ${className}" /></h1>
