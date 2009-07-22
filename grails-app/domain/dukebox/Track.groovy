@@ -4,13 +4,13 @@ import org.joda.time.DateTime
 import org.joda.time.contrib.hibernate.PersistentDateTime
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
-class Track {
+class Track implements Serializable {
 
 	String title
 	String artist
 	String album
-	Integer trackNo
-	Integer year
+	String trackNo
+	String year
 
 //	User uploadedBy
 //	User lastModifiedBy
@@ -25,11 +25,11 @@ class Track {
 	String filepath
 
     static constraints = {
-		title()
-		artist()
+		title blank: false
+		artist blank: false
 		album nullable: true, blank: true
-		trackNo nullable: true
-		year nullable: true
+		trackNo nullable: true, blank: true, matches: /^\d+$/
+		year nullable: true, blank: true, matches: /^\d{4}$/
 		lastPlayed nullable: true
 		filepath unique: true
     }

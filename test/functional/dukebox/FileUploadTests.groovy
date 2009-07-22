@@ -46,8 +46,30 @@ class FileUploadTests extends AbstractFunctionalTestCase {
 			click "Create"
 		}
 
-		assertTitle "Create Track"
-		assertContentContains "Please provide missing data"
+		assertTitle "Track Information"
+		assertContentContains "Title is required"
+		assertContentContains "Artist is required"
+
+		form {
+			album = "From the Desk of Mr. Lady"
+			year = "2004"
+			click "Update"
+		}
+
+		assertTitle "Track Information"
+		assertContentContains "Title is required"
+		assertContentContains "Artist is required"
+
+		form {
+			assertEquals "From the Desk of Mr. Lady", album
+			assertEquals "2004", year
+
+			title = "Fake French"
+			artist = "Le Tigre"
+			click "Update"
+		}
+
+		assertTitle "Show Track"
 	}
 
 }

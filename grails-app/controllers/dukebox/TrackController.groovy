@@ -11,48 +11,46 @@ class TrackController {
 	static scaffold = Track
 
 	// the delete, save and update actions only accept POST requests
-	static allowedMethods = [delete: 'POST', save: 'POST', update: 'POST']
+	static allowedMethods = [delete: 'POST', update: 'POST']
 
 	def libraryService
 
 	def createFlow = {
 		upload {
 			on("next") {TrackUploadCommand command ->
-				println "upload next..."
+				flow.command = command
 				if (command.hasErrors()) {
-					println "upload validation failed..."
 					return error()
 				}
-				flow.file = File.createTempFile("upload", ".mp3")
-				println "created temp file $flow.file.absolutePath"
-				command.file.transferTo flow.file
 			}.to("createTrack")
 		}
 		createTrack {
 			action {
-				println "createTrack action..."
-				flow.file.withInputStream {istream ->
-					def track = libraryService.add(istream)
-					if (track.hasErrors()) {
-						failure()
-					} else {
-						flow.trackId = track.id
-						flash.message = "track.created"
-						flash.args = [track.title, track.artist]
-						flash.defaultMessage = "$track uploaded"
-						success()
-					}
+				flow.trackInstance = libraryService.add(flow.command.file.inputStream)
+				if (flow.trackInstance.hasErrors()) {
+					failure()
+				} else {
+					println "id = $flow.trackInstance.id"
+					flash.message = "track.created"
+					flash.args = [flow.trackInstance.title, flow.trackInstance.artist]
+					flash.defaultMessage = "$flow.trackInstance uploaded"
+					success()
 				}
 			}
-			on("success") {
-				println "createTrack success..."
+			on("success").to("finished")
+			on("failure").to("enterDetails")
+		}
+		enterDetails {
+			on("next") {
+				flow.trackInstance.properties = params
+				if (!flow.trackInstance.save()) {
+					return error()
+				}
+				println "id = $flow.trackInstance.id"
 			}.to("finished")
-			on("failure") {
-				println "createTrack failure..."
-			}.to("upload")
 		}
 		finished {
-			redirect(controller: "track", action: "show", id: flow.trackId)
+			redirect(controller: "track", action: "show", id: flow.trackInstance.id)
 		}
 	}
 
@@ -73,7 +71,7 @@ class TrackController {
 //	}
 }
 
-class TrackUploadCommand {
+class TrackUploadCommand implements Serializable {
 
 	MultipartFile file
 
