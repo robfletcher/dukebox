@@ -1,5 +1,8 @@
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import dukebox.auth.Role
+import grails.util.GrailsUtil
+import dukebox.auth.User
+import org.springframework.web.context.support.WebApplicationContextUtils
 
 class BootStrap {
 
@@ -14,6 +17,17 @@ class BootStrap {
 				role = new Role(authority: auth, description: desc)
 				assert role.save()
 			}
+		}
+
+		// TODO: remove
+		if (GrailsUtil.environment == "development") {
+			def authenticateService = WebApplicationContextUtils.getWebApplicationContext(servletContext).getBean("authenticateService")
+
+			println "Creating default user..."
+			def user = new User(username: "blackbeard", userRealName: "Edward Teach", email: "blackbeard@energizedwork.com", enabled: true)
+			user.passwd = authenticateService.encodePassword("password")
+			user.addToAuthorities Role.findByAuthority("ROLE_USER")
+			assert user.save()
 		}
 	}
 

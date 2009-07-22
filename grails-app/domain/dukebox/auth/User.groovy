@@ -29,9 +29,10 @@ class User {
 	String pass = '[secret]'
 
 	static constraints = {
-		username(blank: false, unique: true)
-		userRealName(blank: false)
-		passwd(blank: false)
+		username blank: false, unique: true
+		userRealName blank: false
+		passwd blank: false
+		email blank: false, email: true
 		enabled()
 	}
 }

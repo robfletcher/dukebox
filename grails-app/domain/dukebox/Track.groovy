@@ -42,6 +42,7 @@ class Track {
 	static transients = ["file", "inputStream"]
 
 	File getFile() {
+		if (!filepath) return null
 		def basedir = new File(ConfigurationHolder.config.library.basedir)
 		def file = new File(basedir, filepath)
 		return file
@@ -49,7 +50,7 @@ class Track {
 
 	InputStream getInputStream() {
 		def file = getFile()
-		if (!file.isFile()) throw new FileNotFoundException("${file?.absolutePath} not found")
+		if (!file?.isFile()) return null
 		return new FileInputStream(file)
 	}
 

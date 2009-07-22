@@ -23,5 +23,6 @@
 - Support OGG Vorbis
 
 TECH DEBT
+- 2nd level cache
 - Prevent starting multiple player threads
 - Prevent uploading duplicate tracks

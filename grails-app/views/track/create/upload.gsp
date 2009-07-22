@@ -19,7 +19,7 @@
 					<g:renderErrors bean="${command}" as="list"/>
 				</div>
 			</g:hasErrors>
-			<g:form action="save" method="post" enctype="multipart/form-data">
+			<g:form action="create" method="post" enctype="multipart/form-data">
 				<div class="dialog">
 					<fieldset>
 						<legend><g:message code="track.create.legend" default="Enter Track Details"/></legend>
@@ -34,7 +34,7 @@
 					</fieldset>
 				</div>
 				<div class="buttons">
-					<span class="button"><g:submitButton name="create" class="save" value="${message(code: 'create', 'default': 'Create')}"/></span>
+					<span class="button"><g:submitButton name="next" class="save" value="${message(code: 'create', 'default': 'Create')}"/></span>
 				</div>
 			</g:form>
 		</div>
