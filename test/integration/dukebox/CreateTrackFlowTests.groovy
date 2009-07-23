@@ -5,6 +5,8 @@ import org.springframework.mock.web.MockMultipartFile
 
 class CreateTrackFlowTests extends WebFlowTestCase {
 
+	TrackController controller
+	def libraryService
 	File mp3File
 	File noTagsFile
 
@@ -13,10 +15,13 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 
 		mp3File = new File("sample.mp3")
 		noTagsFile = new File("notags.mp3")
+
+		controller = new TrackController()
+		controller.libraryService = libraryService
 	}
 
 	def getFlow() {
-		return new TrackController().createFlow
+		return controller.createFlow
 	}
 
 	void testStartsOnUploadForm() {
@@ -40,16 +45,17 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 	void testGoesDirectlyToEndIfUploadedFileHasTags() {
 		startFlow()
 
-		mockRequest.file = new MockMultipartFile(mp3File.name, new FileInputStream(mp3File))
+		controller.params.file = new MockMultipartFile(mp3File.name, new FileInputStream(mp3File))
 		signalEvent "next"
 
-		assertCurrentStateEquals "showTrack"
+		assertFlowExecutionEnded()
+		assertFlowExecutionOutcomeEquals "showTrack"
 	}
 
 	void testRequestsMissingTagDataIfUploadedFileHasNoTags() {
 		startFlow()
 
-		mockRequest.file = new MockMultipartFile(mp3File.name, new FileInputStream(noTagsFile))
+		controller.params.file = new MockMultipartFile(mp3File.name, new FileInputStream(noTagsFile))
 		signalEvent "next"
 
 		assertCurrentStateEquals "enterDetails"
