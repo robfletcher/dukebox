@@ -41,11 +41,6 @@
 				</tr>
 
 				<tr class="prop">
-					<td valign="top" class="name">Description:</td>
-					<td valign="top" class="value">${person.description?.encodeAsHTML()}</td>
-				</tr>
-
-				<tr class="prop">
 					<td valign="top" class="name">Email:</td>
 					<td valign="top" class="value">${person.email?.encodeAsHTML()}</td>
 				</tr>

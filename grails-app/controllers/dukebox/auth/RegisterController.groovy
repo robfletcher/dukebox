@@ -171,7 +171,6 @@ class RegisterController {
 		person.passwd = pass
 		person.enabled = true
 		person.emailShow = true
-		person.description = ''
 		if (person.save()) {
 			role.addToPeople(person)
 			if (config.security.useMail) {

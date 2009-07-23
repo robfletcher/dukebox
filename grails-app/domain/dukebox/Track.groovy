@@ -37,6 +37,7 @@ class Track implements Serializable {
 	static mapping = {
 		dateCreated type: PersistentDateTime
 		lastUpdated type: PersistentDateTime
+		cache true
 	}
 
 	static transients = ["file", "inputStream"]

@@ -12,6 +12,11 @@ class Role {
 		description()
 	}
 
+	static mapping = {
+		people cache: true
+		cache: true
+	}
+
 	boolean equals(o) {
 		if (this.is(o)) return true
 		if (!o.instanceOf(Role)) return false

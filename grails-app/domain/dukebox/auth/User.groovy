@@ -10,20 +10,12 @@ class User {
 	static hasMany = [authorities: Role]
 	static belongsTo = Role
 
-	/** Username */
 	String username
-	/** User Real Name*/
 	String userRealName
-	/** MD5 Password */
 	String passwd
-	/** enabled */
 	boolean enabled
-
 	String email
 	boolean emailShow
-
-	/** description */
-	String description = ''
 
 	/** plain password to create a MD5 password */
 	String pass = '[secret]'
@@ -34,6 +26,11 @@ class User {
 		passwd blank: false
 		email blank: false, email: true
 		enabled()
+	}
+
+	static mapping = {
+		authorities cache: true
+		cache true
 	}
 
 	boolean equals(o) {
