@@ -69,7 +69,7 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 	void testRequestsMissingTagDataIfUploadedFileHasNoTags() {
 		startFlow()
 
-		controller.params.file = new MockMultipartFile(mp3File.name, new FileInputStream(noTagsFile))
+		controller.params.file = new MockMultipartFile(noTagsFile.name, new FileInputStream(noTagsFile))
 		signalEvent "next"
 
 		assertCurrentStateEquals "enterDetails"
@@ -77,7 +77,47 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		assertNotNull track
 		assertEquals "nullable", track.errors.getFieldError("title").code
 		assertEquals "nullable", track.errors.getFieldError("artist").code
-		assertFalse track.file.isFile()
+		assertFalse "File should not be created until valid Track is saved", track.file.isFile()
+	}
+
+	void testMissingTagDataIsAddedToTrack() {
+		startFlow()
+
+		currentState = "enterDetails"
+		flowScope.command = new TrackUploadCommand(file: new MockMultipartFile(noTagsFile.name, new FileInputStream(noTagsFile)))
+		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
+
+		controller.params.title = "Fake French"
+		controller.params.artist = "Le Tigre"
+		signalEvent "next"
+
+		assertFlowExecutionEnded()
+		assertFlowExecutionOutcomeEquals "showTrack"
+
+		assertEquals 1, Track.count()
+		def track = Track.findByTitle("Fake French")
+		assertNotNull track
+		assertEquals "Le Tigre", track.artist
+		assertTrue track.file.isFile()
+	}
+
+	void testMandatoryTagDataMustBeEntered() {
+		startFlow()
+
+		currentState = "enterDetails"
+		flowScope.command = new TrackUploadCommand(file: new MockMultipartFile(noTagsFile.name, new FileInputStream(noTagsFile)))
+		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
+
+		controller.params.title = ""
+		controller.params.artist = ""
+		signalEvent "next"
+
+		assertCurrentStateEquals "enterDetails"
+
+		def track = flowScope.trackInstance
+		assertEquals "blank", track.errors.getFieldError("title").code
+		assertEquals "blank", track.errors.getFieldError("artist").code
+		assertFalse "File should not be created until valid Track is saved", track.file.isFile()
 	}
 
 }
