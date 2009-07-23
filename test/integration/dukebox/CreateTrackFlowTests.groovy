@@ -20,6 +20,14 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		controller.libraryService = libraryService
 	}
 
+	void tearDown() {
+		super.tearDown()
+
+		Track.list().each {
+			it.file.delete()
+		}
+	}
+
 	def getFlow() {
 		return controller.createFlow
 	}
@@ -50,6 +58,12 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 
 		assertFlowExecutionEnded()
 		assertFlowExecutionOutcomeEquals "showTrack"
+
+		assertEquals 1, Track.count()
+		def track = Track.findByTitle("Fake French")
+		assertNotNull track
+		assertEquals "Le Tigre", track.artist
+		assertTrue track.file.isFile()
 	}
 
 	void testRequestsMissingTagDataIfUploadedFileHasNoTags() {
@@ -59,6 +73,11 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		signalEvent "next"
 
 		assertCurrentStateEquals "enterDetails"
+		def track = flowScope.trackInstance
+		assertNotNull track
+		assertEquals "nullable", track.errors.getFieldError("title").code
+		assertEquals "nullable", track.errors.getFieldError("artist").code
+		assertFalse track.file.isFile()
 	}
 
 }
