@@ -3,10 +3,26 @@ import dukebox.auth.Role
 import grails.util.GrailsUtil
 import dukebox.auth.User
 import org.springframework.web.context.support.WebApplicationContextUtils
+import org.springframework.validation.Errors
+import org.springframework.validation.ObjectError
+import org.springframework.validation.FieldError
 
 class BootStrap {
 
 	def init = {servletContext ->
+
+		Errors.metaClass.toString = {->
+			def buffy = new StringBuilder()
+			buffy << "$delegate.objectName: $delegate.errorCount errors"
+			delegate.globalErrors.each {error ->
+				buffy << "\n   $error.code"
+			}
+			delegate.fieldErrors.each {error ->
+				buffy << "\n   $error.field = $error.code"
+			}
+			return buffy.toString()
+		}
+
 		def libraryBasedir = new File(ConfigurationHolder.config.library.basedir)
 		libraryBasedir.mkdirs()
 
@@ -19,7 +35,7 @@ class BootStrap {
 			}
 		}
 
-		// TODO: remove
+		// TODO: remove?
 		if (GrailsUtil.environment == "development") {
 			def authenticateService = WebApplicationContextUtils.getWebApplicationContext(servletContext).getBean("authenticateService")
 

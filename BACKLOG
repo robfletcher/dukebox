@@ -6,7 +6,6 @@ BACKLOG
 - Sort out CSS & layout basics
 - Reskin Acegi pages
 - Now playing page refreshes when new track plays
-- Handle missing ID3 tags on create (webflow?)
 - User information saved when tracks uploaded/edited
 - Only owner / admin can delete tracks
 - Now Playing page is index
