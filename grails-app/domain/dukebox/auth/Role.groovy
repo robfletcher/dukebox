@@ -1,21 +1,28 @@
 package dukebox.auth
 
-import dukebox.auth.User
-
-/**
- * Authority domain class.
- */
 class Role {
 
 	static hasMany = [people: User]
 
-	/** description */
-	String description
-	/** ROLE String */
 	String authority
+	String description
 
 	static constraints = {
-		authority(blank: false, unique: true)
+		authority blank: false, unique: true
 		description()
+	}
+
+	boolean equals(o) {
+		if (this.is(o)) return true
+		if (!o.instanceOf(Role)) return false
+		return authority == o.authority
+	}
+
+	int hashCode() {
+		return authority?.hashCode() ?: 0
+	}
+
+	String toString() {
+		return authority
 	}
 }

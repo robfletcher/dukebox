@@ -6,8 +6,9 @@ security {
 
 	loginUserDomainClass = "dukebox.auth.User"
 	authorityDomainClass = "dukebox.auth.Role"
-
 	useRequestMapDomainClass = false
+
+	cacheUsers = false
 
 	requestMapString = '''
 		CONVERT_URL_TO_LOWERCASE_BEFORE_COMPARISON

@@ -19,18 +19,20 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 	}
 
 	void tearDown() {
+		get "/logout"
+
 		super.tearDown()
 
 		Role.withTransaction {
+			Track.list().each {track ->
+				track.delete()
+			}
 			Role.list().each {role ->
 				role.people = []
 				role.save()
 			}
 			User.list().each {user ->
 				user.delete()
-			}
-			Track.list().each {track ->
-				track.delete()
 			}
 		}
 	}

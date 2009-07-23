@@ -35,4 +35,18 @@ class User {
 		email blank: false, email: true
 		enabled()
 	}
+
+	boolean equals(o) {
+		if (this.is(o)) return true
+		if (!o.instanceOf(User)) return false
+		return username == o.username
+	}
+
+	int hashCode() {
+		return username?.hashCode() ?: 0
+	}
+
+	String toString() {
+		return "User[$username]"
+	}
 }
