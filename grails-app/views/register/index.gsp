@@ -1,82 +1,85 @@
 <head>
-	<meta name="layout" content="main" />
-	<title>User Registration</title>
+	<meta name="layout" content="main"/>
+	<title><g:message code="register.index" default="User Registration"/></title>
 </head>
 
 <body>
 
-	<div class="nav">
-		<span class="menuButton"><a class='home' href="${createLinkTo(dir:'')}">Home</a></span>
-	</div>
+	<g:applyLayout name="menu">
+	</g:applyLayout>
 
 	<div class="body">
-		<h1>User Registration</h1>
+		<h1><g:message code="register.index" default="User Registration"/></h1>
 		<g:if test="${flash.message}">
-		<div class="message">${flash.message}</div>
+			<div class="message">${flash.message}</div>
 		</g:if>
 		<g:hasErrors bean="${person}">
-		<div class="errors">
-			<g:renderErrors bean="${person}" as="list" />
-		</div>
+			<div class="errors">
+				<g:renderErrors bean="${person}" as="list"/>
+			</div>
 		</g:hasErrors>
 
 		<g:form action="save">
-		<div class="dialog">
-		<table>
-		<tbody>
+			<div class="dialog">
+				<fieldset>
+					<legend><g:message code="register.index.legend" default="Enter Registration Details"/></legend>
 
-			<tr class='prop'>
-				<td valign='top' class='name'><label for='username'>Login Name:</label></td>
-				<td valign='top' class='value ${hasErrors(bean:person,field:'username','errors')}'>
-					<input type="text" name='username' value="${person?.username?.encodeAsHTML()}"/>
-				</td>
-			</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'username', 'error')}'>
+						<label for='username'>
+							<g:message code="user.username" default="Login Name"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="text" name='username' value="${person?.username?.encodeAsHTML()}"/>
+					</div>
 
-			<tr class='prop'>
-				<td valign='top' class='name'><label for='userRealName'>Full Name:</label></td>
-				<td valign='top' class='value ${hasErrors(bean:person,field:'userRealName','errors')}'>
-					<input type="text" name='userRealName' value="${person?.userRealName?.encodeAsHTML()}"/>
-				</td>
-			</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'userRealName', 'error')}'>
+						<label for='userRealName'>
+							<g:message code="user.userRealName" default="Full Name"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="text" name='userRealName' value="${person.userRealName?.encodeAsHTML()}"/>
+					</div>
 
-			<tr class='prop'>
-				<td valign='top' class='name'><label for='passwd'>Password:</label></td>
-				<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
-					<input type="password" name='passwd' value="${person?.passwd?.encodeAsHTML()}"/>
-				</td>
-			</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'passwd', 'error')}'>
+						<label for='passwd'>
+							<g:message code="user.passwd" default="Password"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="password" name='passwd' value=""/>
+					</div>
 
-			<tr class='prop'>
-				<td valign='top' class='name'><label for='repasswd'>Confirm Password:</label></td>
-				<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
-					<input type="password" name='repasswd' value="${person?.passwd?.encodeAsHTML()}"/>
-				</td>
-			</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'passwd', 'error')}'>
+						<label for='enabled'>
+							<g:message code="user.repasswd" default="Confirm Password"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="password" name='repasswd'/>
+					</div>
 
-			<tr class='prop'>
-				<td valign='top' class='name'><label for='email'>Email:</label></td>
-				<td valign='top' class='value ${hasErrors(bean:person,field:'email','errors')}'>
-					<input type="text" name='email' value="${person?.email?.encodeAsHTML()}"/>
-				</td>
-			</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'email', 'error')}'>
+						<label for='email'>
+							<g:message code="user.email" default="Email"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="text" name='email' value="${person.email?.encodeAsHTML()}"/>
+					</div>
 
-			<tr class='prop'>
-				<td valign='bottom' class='name'><label for='code'>Enter Code: </label></td>
-				<td valign='top' class='name'>
-					<input type="text" name="captcha" size="8"/>
-					<img src="${createLink(controller:'captcha', action:'index')}" align="absmiddle"/>
-				</td>
-			</tr>
+					<div class='prop'>
+						<label for='code'>
+							<g:message code="register.captcha" default="Enter Code"/>
+						</label>
+						<input type="text" name="captcha" size="8"/>
+						<img src="${createLink(controller: 'captcha', action: 'index')}" align="absmiddle"/>
+					</div>
 
-		</tbody>
-		</table>
-		</div>
+				</fieldset>
+			</div>
 
-		<div class="buttons">
-			<span class="formButton">
-				<input class='save' type="submit" value="Create"></input>
-			</span>
-		</div>
+			<div class="buttons">
+				<span class="formButton">
+					<input class='save' type="submit" value="Create"></input>
+				</span>
+			</div>
 
 		</g:form>
 	</div>

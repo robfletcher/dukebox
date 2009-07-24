@@ -24,7 +24,7 @@ label {
     position: relative;
     text-align: right;
     width: 8em;
-    margin-right: 1.5em;
+    margin: 0 1.5em 0 0;
 }
 
 .mandatory .indicator {
