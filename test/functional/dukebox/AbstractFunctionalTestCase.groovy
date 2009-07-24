@@ -48,10 +48,30 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 		}
 	}
 
+	void createAdmin() {
+		def authenticateService = ApplicationHolder.application.mainContext.getBean("authenticateService")
+
+		User.withTransaction {
+			def user = new User(username: "admin", userRealName: "System Administrator", enabled: true, email: "admin@energizedwork.com")
+			user.passwd = authenticateService.encodePassword("password")
+			user.addToAuthorities Role.findByAuthority("ROLE_ADMIN")
+			assert user.save(), user.errors
+		}
+	}
+
 	void login() {
 		get "/login"
 		form {
 			j_username = "blackbeard"
+			j_password = "password"
+			click "Login"
+		}
+	}
+
+	void adminLogin() {
+		get "/login"
+		form {
+			j_username = "admin"
 			j_password = "password"
 			click "Login"
 		}

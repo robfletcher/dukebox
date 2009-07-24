@@ -8,6 +8,36 @@ class SecurityTests extends AbstractFunctionalTestCase {
 		super.setUp()
 
 		createUser()
+		createAdmin()
+	}
+
+	void testLoggedOutMenuItems() {
+		get "/player"
+		assertEquals "Home", byXPath("//div[@class='nav']/ul/li[1]/a")?.textContent?.trim()
+		assertEquals "Player", byXPath("//div[@class='nav']/ul/li[2]/a")?.textContent?.trim()
+		assertEquals "Login", byXPath("//div[@class='nav']/ul/li[3]/a")?.textContent?.trim()
+		assertEquals "Register", byXPath("//div[@class='nav']/ul/li[4]/a")?.textContent?.trim()
+		assertNull byXPath("//div[@class='nav']/ul/li[5]/a")
+	}
+
+	void testLoggedInMenuItems() {
+		login()
+		get "/player"
+		assertEquals "Home", byXPath("//div[@class='nav']/ul/li[1]/a")?.textContent?.trim()
+		assertEquals "Player", byXPath("//div[@class='nav']/ul/li[2]/a")?.textContent?.trim()
+		assertEquals "Track", byXPath("//div[@class='nav']/ul/li[3]/a")?.textContent?.trim()
+		assertEquals "Logout", byXPath("//div[@class='nav']/ul/li[4]/a")?.textContent?.trim()
+		assertNull byXPath("//div[@class='nav']/ul/li[5]/a")
+	}
+
+	void testAdminMenuItems() {
+		adminLogin()
+		get "/player"
+		assertEquals "Home", byXPath("//div[@class='nav']/ul/li[1]/a")?.textContent?.trim()
+		assertEquals "Player", byXPath("//div[@class='nav']/ul/li[2]/a")?.textContent?.trim()
+		assertEquals "User", byXPath("//div[@class='nav']/ul/li[3]/a")?.textContent?.trim()
+		assertEquals "Logout", byXPath("//div[@class='nav']/ul/li[4]/a")?.textContent?.trim()
+		assertNull byXPath("//div[@class='nav']/ul/li[5]/a")
 	}
 
 	void testCannotAccessUserAdminPagesWhenNotLoggedIn() {
