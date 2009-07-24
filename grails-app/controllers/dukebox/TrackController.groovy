@@ -18,13 +18,10 @@ class TrackController {
 	def createFlow = {
 		upload {
 			on("next") {TrackUploadCommand command ->
-				println "got command $command"
 				flow.command = command
 				if (command.hasErrors()) {
-					println "command has errors $command.errors"
 					return error()
 				}
-				println "command is ok"
 			}.to("createTrack")
 		}
 		createTrack {
