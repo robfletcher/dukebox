@@ -1,80 +1,76 @@
 <head>
-	<meta name="layout" content="main" />
-	<title>Edit Profile</title>
+	<meta name="layout" content="main"/>
+	<title><g:message code="register.edit" default="Edit Profile"/></title>
 </head>
 
 <body>
 
-	<div class="nav">
-		<span class="menuButton"><a class='home' href="${createLinkTo(dir:'')}">Home</a></span>
-	</div>
+	<g:applyLayout name="menu">
+	</g:applyLayout>
 
 	<div class="body">
-		<h1>Edit Profile</h1>
+		<h1><g:message code="register.edit" default="Edit Profile"/></h1>
+	<%--	TODO: i18n of flash message --%>
 		<g:if test="${flash.message}">
-		<div class="message">${flash.message}</div>
+			<div class="message">${flash.message}</div>
 		</g:if>
 		<g:hasErrors bean="${person}">
-		<div class="errors">
-			<g:renderErrors bean="${person}" as="list" />
-		</div>
+			<div class="errors">
+				<g:renderErrors bean="${person}" as="list"/>
+			</div>
 		</g:hasErrors>
 
 		<g:form>
-			<input type="hidden" name="id" value="${person.id}" />
-			<input type="hidden" name="version" value="${person.version}" />
+
+			<input type="hidden" name="id" value="${person.id}"/>
+			<input type="hidden" name="version" value="${person.version}"/>
+
 			<div class="dialog">
-			<table>
-				<tbody>
-				<tr class='prop'>
-					<td valign='top' class='name'><label for='username'>Login Name:</label></td>
-					<td valign='top' class='value ${hasErrors(bean:person,field:'username','errors')}'>
+				<fieldset>
+					<legend><g:message code="register.edit.legend" default="Enter Updated Details"/></legend>
+
+					<div class='prop ${hasErrors(bean: person, field: 'username', 'error')}'>
+						<label for='username'><g:message code="user.username" default="Login Name"/></label>
 						<input type="hidden" name='username' value="${person.username?.encodeAsHTML()}"/>
 						<div style="margin:3px">${person.username?.encodeAsHTML()}</div>
-					</td>
-				</tr>
+					</div>
 
-				<tr class='prop'>
-					<td valign='top' class='name'><label for='userRealName'>Full Name:</label></td>
-					<td valign='top' class='value ${hasErrors(bean:person,field:'userRealName','errors')}'>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'userRealName', 'error')}'>
+						<label for='userRealName'>
+							<g:message code="user.userRealName" default="Full Name"/>
+							<span class="indicator">*</span>
+						</label>
 						<input type="text" name='userRealName' value="${person.userRealName?.encodeAsHTML()}"/>
-					</td>
-				</tr>
+					</div>
 
-				<tr class='prop'>
-					<td valign='top' class='name'><label for='passwd'>Password:</label></td>
-					<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
+					<div class='prop ${hasErrors(bean: person, field: 'passwd', 'error')}'>
+						<label for='passwd'><g:message code="user.passwd" default="Password"/></label>
 						<input type="password" name='passwd' value=""/>
-					</td>
-				</tr>
+					</div>
 
-				<tr class='prop'>
-					<td valign='top' class='name'><label for='enabled'>Confirm Password:</label></td>
-					<td valign='top' class='value ${hasErrors(bean:person,field:'passwd','errors')}'>
-						<input type="password" name='repasswd' />
-					</td>
-				</tr>
+					<div class='prop ${hasErrors(bean: person, field: 'passwd', 'error')}'>
+						<label for='enabled'><g:message code="user.repasswd" default="Confirm Password"/></label>
+						<input type="password" name='repasswd'/>
+					</div>
 
-				<tr class='prop'>
-					<td valign='top' class='name'><label for='email'>Email:</label></td>
-					<td valign='top' class='value ${hasErrors(bean:person,field:'email','errors')}'>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'email', 'error')}'>
+						<label for='email'>
+							<g:message code="user.email" default="Email"/>
+							<span class="indicator">*</span>
+						</label>
 						<input type="text" name='email' value="${person.email?.encodeAsHTML()}"/>
-					</td>
-				</tr>
+					</div>
 
-				<tr class='prop'>
-					<td valign='top' class='name'><label for='emailShow'>Show Email:</label></td>
-					<td valign='top' class='value ${hasErrors(bean:person,field:'emailShow','errors')}'>
-						<g:checkBox name='emailShow' value="${person.emailShow}" ></g:checkBox>
-					</td>
-				</tr>
+					<div class='prop ${hasErrors(bean: person, field: 'emailShow', 'error')}'>
+						<label for='emailShow'><g:message code="user.emailShow" default="Show Email"/></label>
+						<g:checkBox name='emailShow' value="${person.emailShow}"></g:checkBox>
+					</div>
 
-				</tbody>
-			</table>
+				</fieldset>
 			</div>
 
 			<div class="buttons">
-				<span class="button"><g:actionSubmit class='save' value="Update" /></span>
+				<span class="button"><g:actionSubmit class='save' value="Update"/></span>
 			</div>
 
 		</g:form>
