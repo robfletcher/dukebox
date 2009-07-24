@@ -1,101 +1,90 @@
 <head>
-	<meta name="layout" content="main" />
-	<title>Edit User</title>
+	<meta name="layout" content="main"/>
+	<title><g:message code="user.edit" default="Edit User"/></title>
 </head>
 
 <body>
 
-	<div class="nav">
-		<span class="menuButton"><a class="home" href="${createLinkTo(dir:'')}">Home</a></span>
-		<span class="menuButton"><g:link class="list" action="list">User List</g:link></span>
-		<span class="menuButton"><g:link class="create" action="create">New User</g:link></span>
-	</div>
+	<g:applyLayout name="menu">
+		<li><g:link class="list" action="list"><g:message code="user.list" default="User List"/></g:link></li>
+		<li><g:link class="create" action="create"><g:message code="user.create" default="New User"/></g:link></li>
+	</g:applyLayout>
 
 	<div class="body">
-		<h1>Edit User</h1>
+		<h1><g:message code="user.edit" default="Edit User"/></h1>
 		<g:if test="${flash.message}">
-		<div class="message">${flash.message}</div>
+			<div class="message">${flash.message}</div>
 		</g:if>
 		<g:hasErrors bean="${person}">
-		<div class="errors">
-			<g:renderErrors bean="${person}" as="list" />
-		</div>
+			<div class="errors">
+				<g:renderErrors bean="${person}" as="list"/>
+			</div>
 		</g:hasErrors>
 
-		<div class="prop">
-			<span class="name">ID:</span>
-			<span class="value">${person.id}</span>
-		</div>
-
 		<g:form>
-			<input type="hidden" name="id" value="${person.id}" />
-			<input type="hidden" name="version" value="${person.version}" />
+			<input type="hidden" name="id" value="${person.id}"/>
+			<input type="hidden" name="version" value="${person.version}"/>
 			<div class="dialog">
-				<table>
-				<tbody>
+				<fieldset>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="username">Login Name:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'username','errors')}">
-							<input type="text" id="username" name="username" value="${person.username?.encodeAsHTML()}"/>
-						</td>
-					</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'username', 'error')}'>
+						<label for='username'>
+							<g:message code="user.username" default="Login Name"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="text" name='username' value="${person?.username?.encodeAsHTML()}"/>
+					</div>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="userRealName">Full Name:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'userRealName','errors')}">
-							<input type="text" id="userRealName" name="userRealName" value="${person.userRealName?.encodeAsHTML()}"/>
-						</td>
-					</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'userRealName', 'error')}'>
+						<label for='userRealName'>
+							<g:message code="user.userRealName" default="Full Name"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="text" name='userRealName' value="${person.userRealName?.encodeAsHTML()}"/>
+					</div>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="passwd">Password:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'passwd','errors')}">
-							<input type="password" id="passwd" name="passwd" value="${person.passwd?.encodeAsHTML()}"/>
-						</td>
-					</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'passwd', 'error')}'>
+						<label for='passwd'>
+							<g:message code="user.passwd" default="Password"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="password" name='passwd' value=""/>
+					</div>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="enabled">Enabled:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'enabled','errors')}">
-							<g:checkBox name="enabled" value="${person.enabled}"/>
-						</td>
-					</tr>
+					<div class='prop ${hasErrors(bean: person, field: 'enabled', 'error')}'>
+						<label for='enabled'><g:message code="user.enabled" default="Enabled"/></label>
+						<g:checkBox name='emailShow' value="${person.enabled}"></g:checkBox>
+					</div>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="email">Email:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'email','errors')}">
-							<input type="text" id="email" name="email" value="${person?.email?.encodeAsHTML()}"/>
-						</td>
-					</tr>
+					<div class='prop mandatory ${hasErrors(bean: person, field: 'email', 'error')}'>
+						<label for='email'>
+							<g:message code="user.email" default="Email"/>
+							<span class="indicator">*</span>
+						</label>
+						<input type="text" name='email' value="${person.email?.encodeAsHTML()}"/>
+					</div>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="emailShow">Show Email:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'emailShow','errors')}">
-							<g:checkBox name="emailShow" value="${person.emailShow}"/>
-						</td>
-					</tr>
+					<div class='prop ${hasErrors(bean: person, field: 'emailShow', 'error')}'>
+						<label for='emailShow'><g:message code="user.emailShow" default="Show Email"/></label>
+						<g:checkBox name='emailShow' value="${person.emailShow}"></g:checkBox>
+					</div>
 
-					<tr class="prop">
-						<td valign="top" class="name"><label for="authorities">Roles:</label></td>
-						<td valign="top" class="value ${hasErrors(bean:person,field:'authorities','errors')}">
-							<ul>
-							<g:each var="entry" in="${roleMap}">
-								<li>${entry.key.authority.encodeAsHTML()}
-									<g:checkBox name="${entry.key.authority}" value="${entry.value}"/>
-								</li>
-							</g:each>
-							</ul>
-						</td>
-					</tr>
+				</fieldset>
 
-				</tbody>
-				</table>
+				<fieldset>
+					<legend><g:message code="user.edit.roles.legend" default="Assign Roles"/></legend>
+					<g:each var="entry" in="${roleMap}">
+						<div class="prop ${hasErrors(bean: person, field: 'authorities', 'errors')}">
+							<label for="${entry.key.authority}">${entry.key.authority.encodeAsHTML()}</label>
+							<g:checkBox name="${entry.key.authority}" value="${entry.value}"></g:checkBox>
+						</div>
+					</g:each>
+				</fieldset>
 			</div>
 
 			<div class="buttons">
-				<span class="button"><g:actionSubmit class="save" value="Update" /></span>
-				<span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete" /></span>
+				<span class="button"><g:actionSubmit class="save" value="Update"/></span>
+				<span class="button"><g:actionSubmit class="delete" onclick="return confirm('Are you sure?');" value="Delete"/></span>
 			</div>
 
 		</g:form>

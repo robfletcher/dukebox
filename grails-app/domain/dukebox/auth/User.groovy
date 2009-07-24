@@ -2,9 +2,6 @@ package dukebox.auth
 
 import dukebox.auth.Role
 
-/**
- * User domain class.
- */
 class User {
 	static transients = ['pass']
 	static hasMany = [authorities: Role]
@@ -35,7 +32,7 @@ class User {
 
 	boolean equals(o) {
 		if (this.is(o)) return true
-		if (!o.instanceOf(User)) return false
+		if (!(o instanceof User)) return false
 		return username == o.username
 	}
 

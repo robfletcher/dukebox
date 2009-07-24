@@ -44,6 +44,12 @@ class BootStrap {
 			user.passwd = authenticateService.encodePassword("password")
 			user.addToAuthorities Role.findByAuthority("ROLE_USER")
 			assert user.save()
+
+			println "Creating admin user..."
+			def admin = new User(username: "admin", userRealName: "Site Administrator", email: "admin@energizedwork.com", enabled: true)
+			admin.passwd = authenticateService.encodePassword("password")
+			admin.addToAuthorities Role.findByAuthority("ROLE_ADMIN")
+			assert admin.save()
 		}
 	}
 
