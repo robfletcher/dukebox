@@ -70,7 +70,7 @@
 			</div>
 
 			<div class="buttons">
-				<span class="button"><g:actionSubmit class='save' value="Update"/></span>
+				<span class="button"><g:actionSubmit class="save" action="update" value="${message(code: 'update', 'default': 'Update')}"/></span>
 			</div>
 
 		</g:form>

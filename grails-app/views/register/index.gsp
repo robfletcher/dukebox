@@ -76,9 +76,7 @@
 			</div>
 
 			<div class="buttons">
-				<span class="formButton">
-					<input class='save' type="submit" value="Create"></input>
-				</span>
+				<span class="button"><g:submitButton class="save" value="${message(code: 'create', 'default': 'Create')}"/></span>
 			</div>
 
 		</g:form>
