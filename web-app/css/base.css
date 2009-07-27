@@ -114,25 +114,14 @@ div.errors li {
 
 /* DEFINITION LISTS FOR SHOW PAGES */
 
-dl {
-    border: 1px solid #ccc;
-    margin: 1em 0;
-    padding: .5em 1em;
-}
-dt {
-    clear: left;
-    float: left;
+span.label {
+	display: inline-block;
     margin: .5em 0;
     text-align: right;
     width: 8em;
 }
-dt:after {
+span.label:after {
     content: ":";
-}
-dd {
-    margin: 0 0 0 9.5em;
-    padding: .5em 0;
-    vertical-align: middle;
 }
 
 /* TABLES */

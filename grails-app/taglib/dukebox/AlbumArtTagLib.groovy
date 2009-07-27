@@ -8,7 +8,7 @@ class AlbumArtTagLib {
 
 	def albumArt = { attrs ->
 		def image = albumArtService.getAlbumArt(attrs.artist, attrs.album)
-		out << """<img src="${image.url}" width="${image.width}" height="${image.height}" />"""
+		out << """<img src="${image.url}" width="${image.width}" height="${image.height}" class="albumart"/>"""
 	}
 
 }

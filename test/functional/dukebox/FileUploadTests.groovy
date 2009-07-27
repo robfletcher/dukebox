@@ -70,7 +70,7 @@ class FileUploadTests extends AbstractFunctionalTestCase {
 			click "Update"
 		}
 
-		assertTitle "Track Uploaded"
+		assertTitle "Fake French by Le Tigre"
 		assertContentContains "Fake French by Le Tigre uploaded"
 	}
 

@@ -1,32 +1,67 @@
 package dukebox
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import com.amazon.advertising.api.sample.SignedRequestsHelper
-import org.springmodules.cache.annotations.Cacheable
+import net.sf.ehcache.Element
+import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class AlbumArtService {
 
 	static transactional = false
 
-//	@Cacheable(modelId="albumArtCachingModel")
+	def albumArtCache
+
 	def getAlbumArt(String artist, String album) {
-		def config = ConfigurationHolder.config.amazon.aws
-		def signedRequestsHelper = SignedRequestsHelper.getInstance(config.endpoint, config.keys.access, config.keys.secret)
-		def params = [
-				Service: "AWSECommerceService",
-				Version: "2009-03-31",
-				Operation: "ItemSearch",
-				SearchIndex: "Music",
-				Artist: artist,
-				Title: album,
-				ResponseGroup: "Images"]
-		def requestUrl = signedRequestsHelper.sign(params)
-		log.debug "Making request to URL: $requestUrl"
-		new URL(requestUrl).withInputStream {InputStream istream ->
-			def response = new XmlSlurper().parse(istream)
-			def imageNode = response.Items.Item[0].MediumImage
-			return [url: imageNode.URL, height: imageNode.Height, width: imageNode.Width]
+		def key = new AlbumArtKey(artist: artist, album: album)
+		withCache(key) {
+			def config = ConfigurationHolder.config.amazon.aws
+			def signedRequestsHelper = SignedRequestsHelper.getInstance(config.endpoint, config.keys.access, config.keys.secret)
+			def params = [
+					Service: "AWSECommerceService",
+					Version: "2009-03-31",
+					Operation: "ItemSearch",
+					SearchIndex: "Music",
+					Artist: artist,
+					Title: album,
+					ResponseGroup: "Images"]
+			def requestUrl = signedRequestsHelper.sign(params)
+			log.debug "Making request to URL: $requestUrl"
+			new URL(requestUrl).withInputStream {InputStream istream ->
+				def response = new XmlSlurper().parse(istream)
+				def imageNode = response.Items.Item[0].MediumImage
+				return [url: imageNode.URL, height: imageNode.Height, width: imageNode.Width]
+			}
 		}
 	}
 
+	private def withCache(AlbumArtKey key, Closure closure) {
+		def value = albumArtCache.get(key)?.value
+		if (!value) {
+			log.debug "cache miss for $key"
+			value = closure(key)
+			albumArtCache.put(new Element(key, value))
+		}
+		return value
+	}
+
+}
+
+class AlbumArtKey implements Serializable {
+	String artist
+	String album
+
+	boolean equals(o) {
+		if (this.is(o)) return true
+		if (!(o instanceof AlbumArtKey)) return false
+		return artist == o.artist && album == o.album
+	}
+
+	int hashCode() {
+		int result = artist?.hashCode() ?: 0
+		result = 31 * result + (album?.hashCode() ?: 0)
+		return result
+	}
+
+	String toString() {
+		"AlbumArtKey[artist='$artist', album='$album']"
+	}
 }

@@ -71,6 +71,7 @@ log4j = {
     warn   'org.mortbay.log'
 
 	debug  'grails.app.service.dukebox.PlayerService',
+		   'grails.app.service.dukebox.AlbumArtService',
 	       'dukebox.Player'
 }
 

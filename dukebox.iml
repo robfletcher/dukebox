@@ -2240,7 +2240,6 @@
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/src/groovy" isTestSource="false" />
-      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/springcache-1.0.1/src/java" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/grails-app/conf/hibernate" isTestSource="false" />
@@ -2269,7 +2268,6 @@
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/lib" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/lib" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/lib" />
-          <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/springcache-1.0.1/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -2278,7 +2276,6 @@
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/hibernate-1.2-M1/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/lib" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/springcache-1.0.1/lib" recursive="false" />
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
