@@ -2201,24 +2201,22 @@
     </option>
     <option name="fullPluginsInfo">
       <map>
-        <entry key="build-test-data">
+        <entry key="springcache">
           <value>
             <GrailsPlugin>
-              <option name="author" value="Ted Naleid and Joe Hoover" />
-              <option name="description" value="\" />
-              <option name="email" value="contact@naleid.com" />
-              <option name="name" value="build-test-data" />
-              <option name="release" value="0.2.2" />
-              <option name="title" value="Name: build-test-data&#9;| Latest release: 0.2.2" />
-              <option name="url" value="http://bitbucket.org/tednaleid/grails-test-data/wiki/Home" />
+              <option name="author" value="Rob Fletcher" />
+              <option name="description" value="Uses the spring-modules-cache library to allow caching pointcuts to be easily applied to Spring managed beans in a" />
+              <option name="email" value="rob@energizedwork.com" />
+              <option name="name" value="springcache" />
+              <option name="release" value="1.0.1" />
+              <option name="title" value="Name: springcache&#9;| Latest release: 1.0.1" />
+              <option name="url" value="http://grails.org/Springcache+Plugin" />
               <option name="versions">
                 <set>
                   <option value="0.1" />
-                  <option value="0.1.1" />
-                  <option value="0.1.2" />
                   <option value="0.2" />
-                  <option value="0.2.1" />
-                  <option value="0.2.2" />
+                  <option value="1.0" />
+                  <option value="1.0.1" />
                 </set>
               </option>
             </GrailsPlugin>
@@ -2242,6 +2240,7 @@
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/springcache-1.0.1/src/java" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/grails-app/conf/hibernate" isTestSource="false" />
@@ -2270,6 +2269,7 @@
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/lib" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/lib" />
           <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/acegi-0.5.1/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/springcache-1.0.1/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -2278,6 +2278,7 @@
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/hibernate-1.2-M1/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/jawr-2.8/lib" recursive="false" />
         <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/joda-time-0.4.2/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-M1/projects/dukebox/plugins/springcache-1.0.1/lib" recursive="false" />
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>

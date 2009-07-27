@@ -56,6 +56,7 @@
 								<td valign="top" class="name"><g:message code="track.playCount" default="Play Count"/>:</td>
 								<td valign="top" class="value">${fieldValue(bean: trackInstance, field: "playCount")}</td>
 							</tr>
+							<tr><td colspan="2"><amazon:albumArt artist="${trackInstance.artist}" album="${trackInstance.album}" /></td></tr>
 						</tbody>
 					</table>
 				</div>

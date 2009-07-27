@@ -87,10 +87,12 @@ jawr {
     }
 }
 
-library.basedir = "${System.properties.'java.io.tmpdir'}/dukebox/library"
-     
-
-//log4j.logger.org.springframework.security='off,stdout'
+springcache {
+	provider = "ehcache"
+	cachingModels {
+		albumArtCachingModel = "cacheName=ALBUM_ART_CACHE"
+	}
+}
 
 amazon {
 	aws {
@@ -101,3 +103,8 @@ amazon {
 		}
 	}
 }
+
+library.basedir = "${System.properties.'java.io.tmpdir'}/dukebox/library"
+     
+
+//log4j.logger.org.springframework.security='off,stdout'
