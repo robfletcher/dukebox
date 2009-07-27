@@ -91,3 +91,13 @@ library.basedir = "${System.properties.'java.io.tmpdir'}/dukebox/library"
      
 
 //log4j.logger.org.springframework.security='off,stdout'
+
+amazon {
+	aws {
+		endpoint='ecs.amazonaws.co.uk'
+		keys {
+			access='AKIAICJEHIOQKWTPDEBA'
+			secret='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'
+		}
+	}
+}
