@@ -67,7 +67,7 @@ class AlbumArtServiceTests extends GrailsUnitTestCase {
 		service.getAlbumArt("Handsome Furs", "Face Control")
 	}
 
-	void testReturnsDefaultImageIfNotFoundOnAmazon() {
+	void testReturnsNullIfNotFoundOnAmazon() {
 		// stub out Amazon response
 		URL.metaClass.withInputStream = {Closure c ->
 			notFoundResponse.withInputStream {istream ->
@@ -75,10 +75,7 @@ class AlbumArtServiceTests extends GrailsUnitTestCase {
 			}
 		}
 
-		def albumart = service.getAlbumArt("Handsome Furs", "Face Control")
-		assertEquals "/images/defaultAlbumArt.jpg", albumart.url
-		assertEquals "160", albumart.width
-		assertEquals "160", albumart.height
+		assertNull service.getAlbumArt("Handsome Furs", "Face Control")
 	}
 
 }
