@@ -8,6 +8,8 @@ class AlbumArtService {
 
 	static transactional = false
 
+	static final DEFAULT_IMAGE = [url: "/images/defaultAlbumArt.jpg", width: "160", height: "160"].asImmutable()
+
 	def albumArtCache
 
 	def getAlbumArt(String artist, String album) {
@@ -28,7 +30,13 @@ class AlbumArtService {
 			new URL(requestUrl).withInputStream {InputStream istream ->
 				def response = new XmlSlurper().parse(istream)
 				def imageNode = response.Items.Item[0].MediumImage
-				return [url: imageNode.URL, height: imageNode.Height, width: imageNode.Width]
+				println "imageNode = --<$imageNode>-- ${imageNode.getClass().name}"
+				if (imageNode.URL?.text()) {
+					return [url: imageNode.URL.text(), height: imageNode.Height.text(), width: imageNode.Width.text()]
+				} else {
+					log.debug "No image found in response"
+					return DEFAULT_IMAGE
+				}
 			}
 		}
 	}
