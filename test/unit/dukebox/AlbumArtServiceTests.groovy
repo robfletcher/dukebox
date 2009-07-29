@@ -78,4 +78,33 @@ class AlbumArtServiceTests extends GrailsUnitTestCase {
 		assertNull service.getAlbumArt("Handsome Furs", "Face Control")
 	}
 
+	void testReturnsOtherSizesIfRequested() {
+		// stub out Amazon response
+		URL.metaClass.withInputStream = {Closure c ->
+			successResponse.withInputStream {istream ->
+				c(istream)
+			}
+		}
+
+		def albumart = service.getAlbumArt("Handsome Furs", "Face Control", ImageSize.LARGE)
+		assertEquals "http://ecx.images-amazon.com/images/I/51ujdalJ8qL.jpg", albumart.url
+		assertEquals "500", albumart.width
+		assertEquals "500", albumart.height
+	}
+
+	void testSizesAreCachedSeparately() {
+		// stub out Amazon response
+		URL.metaClass.withInputStream = {Closure c ->
+			successResponse.withInputStream {istream ->
+				c(istream)
+			}
+		}
+
+		service.getAlbumArt("Handsome Furs", "Face Control", ImageSize.LARGE)
+		service.getAlbumArt("Handsome Furs", "Face Control", ImageSize.MEDIUM)
+		service.getAlbumArt("Handsome Furs", "Face Control", ImageSize.SMALL)
+
+		assertEquals 3, mockCacheStore.size()
+	}
+
 }

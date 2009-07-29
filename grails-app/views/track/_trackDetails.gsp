@@ -1,4 +1,4 @@
-<div class="track">
+<div class="trackDetails">
 	<amazon:albumArt artist="${it.artist}" album="${it.album}"/>
 	<h1 class="title">${fieldValue(bean: it, field: "title")}</h1>
 	<h2 class="artits">${fieldValue(bean: it, field: "artist")}</h2>

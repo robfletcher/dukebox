@@ -28,3 +28,7 @@ BACKLOG
 TECH DEBT
 - Prevent starting multiple player threads
 - Prevent uploading duplicate tracks
+
+SPIKES
+- Audit logging plugin
+- Super file upload plugin

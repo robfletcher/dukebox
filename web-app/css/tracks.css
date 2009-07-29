@@ -1,14 +1,15 @@
-.track {
+/* show page and other places displaying track details */
+.trackDetails {
 	border: 1px solid #ccc;
 	margin: 1em 0;
 	padding: 1em;
 }
-.track h1,
-.track h2,
-.track h3 {
+.trackDetails h1,
+.trackDetails h2,
+.trackDetails h3 {
 	margin: 0 0 .5em 0;
 }
-img.albumart {
+.trackDetails img.albumart {
 	display: block;
 	float: right;
 	margin: 0 0 1em 1em;
