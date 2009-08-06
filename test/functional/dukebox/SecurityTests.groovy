@@ -1,11 +1,11 @@
 package dukebox
 
-import static javax.servlet.http.HttpServletResponse.*
-
 class SecurityTests extends AbstractFunctionalTestCase {
 
 	void setUp() {
 		super.setUp()
+
+		javaScriptEnabled = false 
 
 		createUser()
 		createAdmin()
