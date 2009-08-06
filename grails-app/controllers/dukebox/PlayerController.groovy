@@ -1,21 +1,21 @@
 package dukebox
 
+import dukebox.Track
+
 class PlayerController {
 
-	def playerService
-
 	def index = {
-		return [currentTrack: playerService.currentTrack]
+		def playlist = Track.list(sort: "lastPlayed")
+		return [playlist: playlist]
 	}
 
-	def play = {
-		playerService.play()
-		redirect action: "index"
-	}
-
-	def stop = {
-		playerService.stop()
-		redirect action: "index"
+	def stream = {
+		Track track = Track.findByFilepath(params.id)
+		response.setContentType "audio/mpeg"
+		track.file.withInputStream {istream ->
+			response.outputStream << istream
+		}
+		track.incrementPlayCount()
 	}
 
 }

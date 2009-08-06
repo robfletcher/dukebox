@@ -40,6 +40,11 @@ class Track implements Serializable {
 		cache true
 	}
 
+	void incrementPlayCount() {
+		playCount++
+		lastPlayed = new DateTime()
+	}
+
 	static transients = ["file", "inputStream"]
 
 	File getFile() {
