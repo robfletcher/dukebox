@@ -34,6 +34,11 @@ class AlbumArtServiceTests extends GrailsUnitTestCase {
 		service.albumArtCache = mockCache
 	}
 
+	void testNoOpIfArtistOrAlbumNull() {
+		assertNull service.getAlbumArt("Kim Carnes", null)
+		assertNull service.getAlbumArt(null, "Live It Out")
+	}
+
 	void testRequestsAlbumArtFromAmazon() {
 		// stub out Amazon response
 		URL.metaClass.withInputStream = {Closure c ->

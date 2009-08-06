@@ -12,6 +12,10 @@ class AlbumArtService {
 	def albumArtCache
 
 	def getAlbumArt(String artist, String album, ImageSize size = ImageSize.MEDIUM) {
+		if (!artist || !album) {
+			log.debug "Skipping album art lookup"
+			return null
+		}
 		def key = new AlbumArtKey(artist: artist, album: album, size: size)
 		withCache(key) {
 			def config = ConfigurationHolder.config.amazon.aws

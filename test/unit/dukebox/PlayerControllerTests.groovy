@@ -50,6 +50,7 @@ class PlayerControllerTests extends ControllerUnitTestCase {
 		controller.params.id = tracks[0].filepath
 		controller.stream()
 		assertEquals "audio/mpeg", controller.response.contentType
+		assertEquals 10, controller.response.contentLength
 		assertEquals tracks[0].file.readBytes(), controller.response.contentAsByteArray
 	}
 
