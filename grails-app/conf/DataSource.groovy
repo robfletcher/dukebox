@@ -14,7 +14,7 @@ environments {
 	development {
 		dataSource {
 			dbCreate = "create-drop" // one of 'create', 'create-drop','update'
-			url = "jdbc:hsqldb:mem:devDB"
+			url = "jdbc:hsqldb:file:devDB;shutdown=true"
 		}
 		hibernate.cache.provider_class = 'com.opensymphony.oscache.hibernate.OSCacheProvider'
 	}

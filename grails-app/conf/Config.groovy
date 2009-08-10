@@ -77,9 +77,15 @@ log4j = {
 
 jawr {
     js {
-        bundle.names = 'dukebox'
-        bundle.dukebox.id = '/bundles/dukebox.js'
-		bundle.dukebox.mappings='/js/application.js'
+        bundle.names = 'jquery,dukebox'
+        bundle {
+			dukebox.id = '/bundles/dukebox.js'
+			dukebox.mappings='/js/application.js'
+		}
+        bundle {
+			jquery.id = '/bundles/jquery.js'
+			jquery.mappings='/js/jquery/jquery-1.3.2.js'
+		}
     }
     css {
         bundle.names = 'dukebox'

@@ -6,6 +6,7 @@
 		<jawr:style src="/bundles/dukebox.css"/>
 		<link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon"/>
 		<g:layoutHead/>
+		<jawr:script src="/bundles/jquery.js"/>
 		<jawr:script src="/bundles/dukebox.js"/>
 	</head>
 	<body>

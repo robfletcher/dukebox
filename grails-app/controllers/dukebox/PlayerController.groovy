@@ -1,12 +1,18 @@
 package dukebox
 
 import dukebox.Track
+import grails.converters.JSON
 
 class PlayerController {
 
 	def index = {
 		def playlist = Track.list(sort: "lastPlayed")
 		return [playlist: playlist]
+	}
+
+	def nextTrack = {
+		def track = Track.list(sort: "lastPlayed", max: 1)[0]
+		render track as JSON
 	}
 
 	def stream = {
