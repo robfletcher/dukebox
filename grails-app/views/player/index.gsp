@@ -9,6 +9,7 @@
 			var playlist = [];
 			<g:each var="track" in="${playlist}" status="i">
 				playlist[${i}] = {
+					id: '${track.id}',
 					title: '${track.title.encodeAsJavaScript()}', 
 					artist: '${track.artist.encodeAsJavaScript()}',
 					album: '${track.album.encodeAsJavaScript()}',
@@ -20,26 +21,28 @@
 			soundManager.useConsole = false;
 			soundManager.url = '<g:resource dir="/plugins/sound-manager-0.4/media" />';
 			soundManager.onload = function() {
-				console.log("O HAI");
 				playNextTrack();
 			}
 
-			var nextIndex = 0;
-			var track = null;
+			var currentTrack = null;
 
 			function playNextTrack() {
-				console.log("Playing " + playlist[nextIndex].title + ' by ' + playlist[nextIndex].artist);
-				var track = soundManager.createSound({
-					id: '' + nextIndex,
-					url: streamUrl + playlist[nextIndex].path,
-					onfinish: function() {
-						console.log("Finished playing");
-						track = null;
-						nextIndex++;
-						setTimeout('playNextTrack()', 15);
-					}
-				});
-				track.play();
+				currentTrack = playlist.shift();
+				if (currentTrack == null) {
+					console.warn("Playlist is empty");
+				} else {
+					console.info("Playing " + currentTrack.title + ' by ' + currentTrack.artist);
+					var sound = soundManager.createSound({
+						id: currentTrack.id,
+						url: streamUrl + currentTrack.path,
+						onfinish: function() {
+							console.info("Finished playing");
+							currentTrack = null;
+							setTimeout('playNextTrack()', 15);
+						}
+					});
+					sound.play();
+				}
 			}
 		</g:javascript>
 	</head>
