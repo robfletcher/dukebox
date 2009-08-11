@@ -35,6 +35,10 @@ class PlayerControllerTests extends ControllerUnitTestCase {
 	}
 
 	void tearDown() {
+		Track.list().each {
+			it.file.delete()
+		}
+
 		super.tearDown()
 
 		DateTimeUtils.setCurrentMillisSystem()

@@ -1,5 +1,5 @@
 BUGS
-- player attempts to play tracks with invalid files
+- track list shows medium image when no album art available
 
 BACKLOG
 - Sort out CSS & layout basics
@@ -26,7 +26,6 @@ BACKLOG
 - Support OGG Vorbis
 
 TECH DEBT
-- Prevent starting multiple player threads
 - Prevent uploading duplicate tracks
 
 SPIKES
