@@ -8,6 +8,9 @@ testDataConfig {
 			password = {-> authenticateService.encodePassword("password") }
 			enabled = true
 		}
+		"dukebox.Track" {
+			filepath = {-> "${UUID.randomUUID()}.mp3" }
+		}
     }
 }
 

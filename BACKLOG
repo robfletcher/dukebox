@@ -27,6 +27,10 @@ BACKLOG
 - Support OGG Vorbis
 
 TECH DEBT
+- Get rid of unused jlayer libs
+- Resolve base.css vs main.css (Grails 1.2-M2)
+- Named URLs
+- Named queries
 - Prevent uploading duplicate tracks
 
 SPIKES

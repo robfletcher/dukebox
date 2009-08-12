@@ -45,19 +45,21 @@ class Track implements Serializable {
 		lastPlayed = new DateTime()
 	}
 
-	static transients = ["file", "inputStream"]
+	static transients = ["file"]
 
-	File getFile() {
+	transient File getFile() {
 		if (!filepath) return null
 		def basedir = new File(ConfigurationHolder.config.library.basedir)
+		if (!basedir.isDirectory()) {
+			log.error "Library basedir $basedir does not exist"
+			return null
+		}
 		def file = new File(basedir, filepath)
+		if (!file.isFile()) {
+			log.error "File $file does not exist"
+			return null
+		}
 		return file
-	}
-
-	InputStream getInputStream() {
-		def file = getFile()
-		if (!file?.isFile()) return null
-		return new FileInputStream(file)
 	}
 
 	int hashCode() {

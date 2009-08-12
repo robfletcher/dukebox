@@ -20,6 +20,7 @@ class TrackController {
 			on("next") {TrackUploadCommand command ->
 				flow.command = command
 				if (command.hasErrors()) {
+					log.debug "upload error - rerendering form"
 					return error()
 				}
 			}.to("createTrack")
@@ -28,8 +29,10 @@ class TrackController {
 			action {
 				flow.trackInstance = libraryService.add(flow.command.file.inputStream)
 				if (flow.trackInstance.hasErrors()) {
+					log.debug "createTrack failure - ${flow.trackInstance.errors.allErrors.collect { it.field + ":" + it.code} }"
 					failure()
 				} else {
+					log.debug "createTrack success"
 					success()
 				}
 			}
@@ -38,8 +41,10 @@ class TrackController {
 		}
 		enterDetails {
 			on("next") {
+				log.debug "enterDetails form submitted"
 				flow.trackInstance.properties = params
 				if (!flow.trackInstance.save()) {
+					log.debug "enterDetails track invalid"
 					return error()
 				}
 				flow.command.file.transferTo flow.trackInstance.file
@@ -47,6 +52,7 @@ class TrackController {
 		}
 		confirmUpload() {
 			action {
+				log.debug "Everything ok"
 				flash.message = "track.created"
 				flash.args = [flow.trackInstance.title, flow.trackInstance.artist]
 				flash.defaultMessage = "$flow.trackInstance uploaded"

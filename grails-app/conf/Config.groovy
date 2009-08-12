@@ -70,28 +70,31 @@ log4j = {
 
 	warn 'org.mortbay.log'
 
+	info 'grails.app.service.dukebox.AlbumArtService'
+
 	debug 'grails.app.service.dukebox.PlayerService',
-			'grails.app.service.dukebox.AlbumArtService',
-			'dukebox.Player'
+			'dukebox.Player',
+			'grails.app.controller.dukebox.TrackController',
+			'org.springframework.webflow'
 }
 
 jawr {
-    js {
-        bundle.names = 'jquery,dukebox'
-        bundle {
+	js {
+		bundle.names = 'jquery,dukebox'
+		bundle {
 			dukebox.id = '/bundles/dukebox.js'
-			dukebox.mappings='/js/application.js'
+			dukebox.mappings = '/js/application.js'
 		}
-        bundle {
+		bundle {
 			jquery.id = '/bundles/jquery.js'
-			jquery.mappings='/js/jquery/jquery-1.3.2.js'
+			jquery.mappings = '/js/jquery/jquery-1.3.2.js'
 		}
-    }
-    css {
-        bundle.names = 'dukebox'
-        bundle.dukebox.id = '/bundles/dukebox.css'
-        bundle.dukebox.mappings = '/css/**'
-    }
+	}
+	css {
+		bundle.names = 'dukebox'
+		bundle.dukebox.id = '/bundles/dukebox.css'
+		bundle.dukebox.mappings = '/css/**'
+	}
 }
 
 springcache {
