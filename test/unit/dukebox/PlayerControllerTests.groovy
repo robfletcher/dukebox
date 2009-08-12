@@ -25,6 +25,7 @@ class PlayerControllerTests extends ControllerUnitTestCase {
 		tracks << new Track(title: "This Wheel's On Fire", artist: "Siouxsie and the Banshees", playCount: 1, lastPlayed: now.minusDays(1), filepath: "${UUID.randomUUID()}.mp3")
 		tracks << new Track(title: "Gimme Back My Bullets", artist: "Lynyrd Skynyrd", playCount: 1, lastPlayed: now.minusWeeks(1), filepath: "${UUID.randomUUID()}.mp3")
 		tracks << new Track(title: "Consoler Of The Lonely", artist: "The Racounteurs", playCount: 1, lastPlayed: now.minusHours(1), filepath: "${UUID.randomUUID()}.mp3")
+		mockLogging Track
 		mockDomain(Track, tracks)
 
 		tracks.each { track ->

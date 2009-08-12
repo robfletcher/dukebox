@@ -3,6 +3,7 @@ package dukebox
 import org.joda.time.DateTime
 import org.joda.time.contrib.hibernate.PersistentDateTime
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import grails.converters.JSON
 
 class Track implements Serializable {
 
@@ -24,7 +25,7 @@ class Track implements Serializable {
 	// path to file on disk relative to root defined in Config.groovy
 	String filepath
 
-    static constraints = {
+	static constraints = {
 		title blank: false
 		artist blank: false
 		album nullable: true, blank: true
@@ -32,7 +33,7 @@ class Track implements Serializable {
 		year nullable: true, blank: true, matches: /^\d{4}$/
 		lastPlayed nullable: true
 		filepath unique: true
-    }
+	}
 
 	static mapping = {
 		dateCreated type: PersistentDateTime
@@ -54,16 +55,11 @@ class Track implements Serializable {
 			log.error "Library basedir $basedir does not exist"
 			return null
 		}
-		def file = new File(basedir, filepath)
-		if (!file.isFile()) {
-			log.error "File $file does not exist"
-			return null
-		}
-		return file
+		return new File(basedir, filepath)
 	}
 
 	int hashCode() {
-		filepath?.hashCode() ?: 0
+			filepath?.hashCode() ?: 0
 	}
 
 	boolean equals(o) {

@@ -1,4 +1,5 @@
 BUGS
+- webflow no longer works for capturing extra track data since upgrading to 1.2-M2
 - track list shows medium image when no album art available
 - player attempts to play tracks with invalid files
 
@@ -32,6 +33,7 @@ TECH DEBT
 - Named URLs
 - Named queries
 - Prevent uploading duplicate tracks
+- Remove DateTimeMarshaller once added to Joda Time plugin
 
 SPIKES
 - Audit logging plugin

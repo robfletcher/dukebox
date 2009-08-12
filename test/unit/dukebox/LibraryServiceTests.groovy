@@ -19,7 +19,8 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		basedir.mkdirs()
 		mockConfig "library.basedir='$basedir.absolutePath'"
 
-		mockDomain(Track)
+		mockLogging Track
+		mockDomain Track
 		Track.metaClass.static.withTransaction = {Closure closure -> closure() }
 
 		mp3File = new File("sample.mp3")

@@ -18,7 +18,7 @@ class PlayerController {
 	def stream = {
 		Track track = Track.findByFilepath(params.id)
 		response.setContentType "audio/mpeg"
-		response.setContentLength track.file.size().toInteger()
+		response.setContentLength track.file.length().toInteger()
 		track.file.withInputStream {istream ->
 			response.outputStream << istream
 		}
