@@ -30,7 +30,7 @@ class PlayerControllerTests extends ControllerUnitTestCase {
 
 		tracks.each { track ->
 			track.file.withOutputStream { ostream ->
-				ostream << RandomStringUtils.random(10).bytes
+				ostream << RandomStringUtils.randomAlphanumeric(10).bytes
 			}
 		}
 	}

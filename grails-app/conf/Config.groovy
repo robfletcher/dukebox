@@ -74,8 +74,7 @@ log4j = {
 
 	debug 'grails.app.service.dukebox.PlayerService',
 			'dukebox.Player',
-			'grails.app.controller.dukebox.TrackController',
-			'org.springframework.webflow'
+			'grails.app.controller.dukebox.TrackController'
 }
 
 jawr {

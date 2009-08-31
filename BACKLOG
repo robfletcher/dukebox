@@ -1,5 +1,5 @@
 BUGS
-- webflow no longer works for capturing extra track data since upgrading to 1.2-M2
+- odd exceptions when uploading files since switching to Tomcat (tests pass, everything seems ok)
 - track list shows medium image when no album art available
 - player attempts to play tracks with invalid files
 
@@ -28,6 +28,7 @@ BACKLOG
 - Support OGG Vorbis
 
 TECH DEBT
+- Clean up temp files in upload flow (hook into end of flow event?)
 - Get rid of unused jlayer libs
 - Resolve base.css vs main.css (Grails 1.2-M2)
 - Named URLs

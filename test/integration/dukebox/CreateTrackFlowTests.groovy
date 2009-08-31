@@ -84,7 +84,7 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		startFlow()
 
 		currentState = "enterDetails"
-		flowScope.command = new TrackUploadCommand(file: new MockMultipartFile(noTagsFile.name, new FileInputStream(noTagsFile)))
+		flowScope.tempfile = noTagsFile
 		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
 
 		controller.params.title = "Fake French"
@@ -105,7 +105,6 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		startFlow()
 
 		currentState = "enterDetails"
-		flowScope.command = new TrackUploadCommand(file: new MockMultipartFile(noTagsFile.name, new FileInputStream(noTagsFile)))
 		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
 
 		controller.params.title = ""

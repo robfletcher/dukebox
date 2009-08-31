@@ -5,6 +5,7 @@ import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.UnsupportedAudioFileException
 import org.springframework.web.multipart.MultipartFile
 import javax.servlet.http.HttpServletResponse
+import org.apache.commons.io.FileUtils
 
 class TrackController {
 
@@ -18,16 +19,19 @@ class TrackController {
 	def createFlow = {
 		upload {
 			on("next") {TrackUploadCommand command ->
-				flow.command = command
 				if (command.hasErrors()) {
 					log.debug "upload error - rerendering form"
+					flow.command = command
 					return error()
+				} else {
+					flow.tempfile = File.createTempFile("upload", ".mp3")
+					command.file.transferTo flow.tempfile
 				}
 			}.to("createTrack")
 		}
 		createTrack {
 			action {
-				flow.trackInstance = libraryService.add(flow.command.file.inputStream)
+				flow.trackInstance = libraryService.add(flow.tempfile.newInputStream())
 				if (flow.trackInstance.hasErrors()) {
 					log.debug "createTrack failure - ${flow.trackInstance.errors.allErrors.collect { it.field + ":" + it.code} }"
 					failure()
@@ -47,7 +51,9 @@ class TrackController {
 					log.debug "enterDetails track invalid"
 					return error()
 				}
-				flow.command.file.transferTo flow.trackInstance.file
+				use(FileUtils) {
+					flow.tempfile.copyFile flow.trackInstance.file
+				}
 			}.to("confirmUpload")
 		}
 		confirmUpload() {
