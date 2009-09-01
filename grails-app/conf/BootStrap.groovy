@@ -3,14 +3,10 @@ import dukebox.auth.Role
 import grails.util.GrailsUtil
 import dukebox.auth.User
 import org.springframework.web.context.support.WebApplicationContextUtils
-import grails.converters.JSON
-import com.energizedwork.grails.plugins.jodatime.DateTimeMarshaller
 
 class BootStrap {
 
 	def init = {servletContext ->
-
-		JSON.registerObjectMarshaller new DateTimeMarshaller() 
 
 		def libraryBasedir = new File(ConfigurationHolder.config.library.basedir)
 		libraryBasedir.mkdirs()

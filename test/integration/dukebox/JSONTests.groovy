@@ -8,7 +8,7 @@ import org.joda.time.format.DateTimeFormat
 
 class JSONTests extends GroovyTestCase {
 
-	static final JSON_DATE_TIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").withZone(DateTimeZone.UTC).withLocale(Locale.US)
+	static final JSON_DATE_TIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZZ")
 
 	void testJSONRendering() {
 		def track = Track.build(
@@ -17,9 +17,7 @@ class JSONTests extends GroovyTestCase {
 				album: "Through the Looking Glass",
 				trackNo: 4,
 				year: 1987,
-				dateCreated: new DateTime(),
-				lastUpdated: new DateTime(),
-				lastPlayed: new DateTime()
+				lastPlayed: new DateTime(2009, 9, 1, 9, 24, 0, 0).withZone(DateTimeZone.forID("America/Vancouver"))
 		)
 
 		def sw = new StringWriter()

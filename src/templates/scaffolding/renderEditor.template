@@ -14,6 +14,8 @@
 		out << renderJodaDateEditor(domainClass,property)
 	else if(property.type == org.joda.time.LocalTime.class)
 		out << renderJodaTimeEditor(domainClass,property)
+	else if(property.type == org.joda.time.Period.class || property.type == org.joda.time.Duration.class)
+		out << renderJodaPeriodEditor(domainClass,property)
     else if(property.type == URL.class) 
         out << renderStringEditor(domainClass,property)
     else if(property.isEnum())
@@ -224,6 +226,27 @@
 					buf << "${k}=\"${v}\" "
 				}
 				buf << "name=\"${property.name}\" value=\"\${${domainInstance}?.${property.name}}\" ${renderNoSelection(property)}></joda:timePicker>"
+				return buf.toString()
+			}
+		}
+	}
+
+	private renderJodaPeriodEditor(domainClass,property) {
+		if(!cp) {
+			return "<joda:periodPicker name=\"${property.name}\" value=\"\${${domainInstance}?.${property.name}}\"></joda:periodPicker>"
+		}
+		else {
+			if(!cp.editable) {
+				return "\${${domainInstance}?.${property.name}?.toString()}"
+			}
+			else {
+				def buf = new StringBuffer('<joda:periodPicker ')
+				if(cp.widget) buf << "widget=\"${cp.widget}\" "
+				if(cp.format) buf << "format=\"${cp.format}\" "
+				cp.attributes.each { k,v ->
+					buf << "${k}=\"${v}\" "
+				}
+				buf << "name=\"${property.name}\" value=\"\${${domainInstance}?.${property.name}}\" ${renderNoSelection(property)}></joda:periodPicker>"
 				return buf.toString()
 			}
 		}
