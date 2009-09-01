@@ -79,7 +79,15 @@ class AlbumArtKey implements Serializable {
 }
 
 enum ImageSize {
-	SMALL, MEDIUM, LARGE
+	SMALL(75, 75), MEDIUM(160, 160), LARGE(500, 500)
+
+	final width
+	final height
+
+	private ImageSize(int width, int height) {
+		this.width = width
+		this.height = height
+	}
 
 	String toString() {
 		WordUtils.capitalizeFully(name())

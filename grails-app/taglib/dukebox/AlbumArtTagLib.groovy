@@ -14,7 +14,7 @@ class AlbumArtTagLib {
 		def image = albumArtService.getAlbumArt(artist, album, size)
 
 		if (!image) {
-			image = [url: resource(dir: "images", file: "defaultAlbumArt.png"), width: 160, height: 160]
+			image = [url: resource(dir: "images", file: "defaultAlbumArt.png"), width: size.width, height: size.height]
 		}
 		out << """<img src="${image.url}" width="${image.width}" height="${image.height}" class="albumart"/>"""
 	}

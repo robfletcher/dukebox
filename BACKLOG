@@ -1,6 +1,5 @@
 BUGS
 - odd exceptions when uploading files since switching to Tomcat (tests pass, everything seems ok)
-- track list shows medium image when no album art available
 - player attempts to play tracks with invalid files
 
 BACKLOG
