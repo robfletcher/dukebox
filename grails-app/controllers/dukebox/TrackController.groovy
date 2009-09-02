@@ -62,6 +62,7 @@ class TrackController {
 				flash.message = "track.created"
 				flash.args = [flow.trackInstance.title, flow.trackInstance.artist]
 				flash.defaultMessage = "$flow.trackInstance uploaded"
+				// TODO: delete tempfile here
 				success()
 			}
 			on("success").to("showTrack")

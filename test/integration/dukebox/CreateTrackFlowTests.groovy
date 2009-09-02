@@ -2,6 +2,7 @@ package dukebox
 
 import grails.test.WebFlowTestCase
 import org.springframework.mock.web.MockMultipartFile
+import org.apache.commons.io.FileUtils
 
 class CreateTrackFlowTests extends WebFlowTestCase {
 
@@ -84,7 +85,9 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		startFlow()
 
 		currentState = "enterDetails"
-		flowScope.tempfile = noTagsFile
+		def tempfile = File.createTempFile("upload", ".mp3")
+		FileUtils.copyFile noTagsFile, tempfile
+		flowScope.tempfile = tempfile
 		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
 
 		controller.params.title = "Fake French"

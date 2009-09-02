@@ -79,14 +79,23 @@ log4j = {
 
 jawr {
 	js {
-		bundle.names = 'jquery,dukebox'
+		bundle.names = 'lib,dukebox'
 		bundle {
 			dukebox.id = '/bundles/dukebox.js'
 			dukebox.mappings = '/js/application.js'
 		}
 		bundle {
-			jquery.id = '/bundles/jquery.js'
-			jquery.mappings = '/js/jquery/jquery-1.3.2.js'
+			lib.id = '/bundles/lib.js'
+			lib.global = true
+			lib.composite = true
+			lib.child.names = 'jquery,jqueryplugins'
+		}
+		bundle {
+			jquery.mappings = '/js/jquery/jquery-1.3.2.min.js'
+			jquery.bundlepostprocessors = 'none'
+		}
+		bundle {
+			jqueryplugins.mappings = '/js/jquery/plugins/**'
 		}
 	}
 	css {
