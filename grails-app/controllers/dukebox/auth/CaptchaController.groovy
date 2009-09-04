@@ -92,10 +92,10 @@ class CaptchaController {
 
 		g2d.drawString(b.toString(), (int)(space/2), (int)(space/4) + (int)fontRect.getHeight())
 
+		session.setAttribute('captcha', b.toString())
+
 		OutputStream out = response.getOutputStream()
 		ImageIO.write(bufferedImage, 'PNG', out)
 		out.close()
-
-		session.setAttribute('captcha', b.toString())
 	}
 }

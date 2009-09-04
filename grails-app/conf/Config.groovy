@@ -73,8 +73,7 @@ log4j = {
 	info 'grails.app.service.dukebox.AlbumArtService'
 
 	debug 'grails.app.service.dukebox.PlayerService',
-			'dukebox.Player',
-			'grails.app.controller.dukebox.TrackController'
+			'dukebox.Player'
 }
 
 jawr {
