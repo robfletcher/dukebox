@@ -12,8 +12,8 @@ class AlbumArtServiceTests extends GrailsUnitTestCase {
 	void setUp() {
 		super.setUp()
 
-		successResponse = new File("amazon/success.xml")
-		notFoundResponse = new File("amazon/notfound.xml")
+		successResponse = new File("test/data/amazon/success.xml")
+		notFoundResponse = new File("test/data/amazon/notfound.xml")
 		assert successResponse.isFile()
 
 		registerMetaClass URL
