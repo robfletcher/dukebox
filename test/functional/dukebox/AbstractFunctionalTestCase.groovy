@@ -15,7 +15,7 @@ abstract class AbstractFunctionalTestCase extends FunctionalTestCase {
 		def port = System.properties."server.port" ?: 8080
 		baseURL = "http://localhost:${port}/dukebox"
 
-		testFile = new File("sample.mp3")
+		testFile = new File("test/data/mp3/sample.mp3")
 	}
 
 	void tearDown() {

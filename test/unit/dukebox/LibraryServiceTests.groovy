@@ -23,8 +23,8 @@ class LibraryServiceTests extends GrailsUnitTestCase {
 		mockDomain Track
 		Track.metaClass.static.withTransaction = {Closure closure -> closure() }
 
-		mp3File = new File("sample.mp3")
-		noTagsFile = new File("notags.mp3")
+		mp3File = new File("test/data/mp3/sample.mp3")
+		noTagsFile = new File("test/data/mp3/notags.mp3")
 
 		libraryService = new LibraryService()
 	}

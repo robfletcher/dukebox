@@ -9,7 +9,7 @@ class FileUploadTests extends AbstractFunctionalTestCase {
 	void setUp() {
 		super.setUp()
 		createUser()
-		noTagsFile = new File("notags.mp3")
+		noTagsFile = new File("test/data/mp3/notags.mp3")
 		assertTrue noTagsFile.isFile()
 	}
 

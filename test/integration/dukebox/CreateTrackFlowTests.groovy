@@ -14,8 +14,8 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 	void setUp() {
 		super.setUp()
 
-		mp3File = new File("sample.mp3")
-		noTagsFile = new File("notags.mp3")
+		mp3File = new File("test/data/mp3/sample.mp3")
+		noTagsFile = new File("test/data/mp3/notags.mp3")
 
 		controller = new TrackController()
 		controller.libraryService = libraryService
