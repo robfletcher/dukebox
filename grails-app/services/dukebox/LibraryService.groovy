@@ -1,13 +1,9 @@
 package dukebox
 
 import dukebox.Track
-import javax.sound.sampled.AudioSystem
-import javax.sound.sampled.UnsupportedAudioFileException
+import org.apache.commons.io.IOUtils
 import org.cmc.music.myid3.MyID3
 import org.codehaus.groovy.grails.commons.ConfigurationHolder
-import org.springframework.web.multipart.MultipartFile
-import org.springframework.context.MessageSourceResolvable
-import org.apache.commons.io.IOUtils
 
 class LibraryService {
 

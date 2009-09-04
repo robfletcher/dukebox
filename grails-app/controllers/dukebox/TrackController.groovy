@@ -1,11 +1,11 @@
 package dukebox
 
 import dukebox.Track
-import javax.sound.sampled.AudioSystem
-import javax.sound.sampled.UnsupportedAudioFileException
-import org.springframework.web.multipart.MultipartFile
 import javax.servlet.http.HttpServletResponse
 import org.apache.commons.io.FileUtils
+import org.springframework.web.multipart.MultipartFile
+import javax.sound.sampled.UnsupportedAudioFileException
+import javax.sound.sampled.AudioSystem
 
 class TrackController {
 
@@ -20,7 +20,7 @@ class TrackController {
 		upload {
 			on("next") {TrackUploadCommand command ->
 				if (command.hasErrors()) {
-					log.debug "upload error - rerendering form"
+					log.debug "upload error: ${command.errors.allErrors.collect { "$it.field: $it.code" } }"
 					flow.command = command
 					return error()
 				} else {
