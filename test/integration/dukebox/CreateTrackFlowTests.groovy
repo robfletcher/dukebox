@@ -85,9 +85,7 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		startFlow()
 
 		currentState = "enterDetails"
-		def tempfile = File.createTempFile("upload", ".mp3")
-		FileUtils.copyFile noTagsFile, tempfile
-		flowScope.tempfile = tempfile
+		flowScope.tempfile = copyToTemp(noTagsFile)
 		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
 
 		controller.params.title = "Fake French"
@@ -122,4 +120,28 @@ class CreateTrackFlowTests extends WebFlowTestCase {
 		assertFalse "File should not be created until valid Track is saved", track.file.isFile()
 	}
 
+	void testTempFilesAreCleanedUpAtEndOfFlow() {
+		startFlow()
+
+		def tempfile = copyToTemp(noTagsFile)
+
+		currentState = "enterDetails"
+		flowScope.tempfile = tempfile
+		flowScope.trackInstance = new Track(filepath: "${UUID.randomUUID()}.mp3")
+
+		controller.params.title = "Fake French"
+		controller.params.artist = "Le Tigre"
+		signalEvent "next"
+
+		assertFlowExecutionEnded()
+		assertFlowExecutionOutcomeEquals "showTrack"
+
+		assertFalse tempfile.isFile()
+	}
+
+	private File copyToTemp(File file) {
+		def tempfile = File.createTempFile("upload", ".mp3")
+		FileUtils.copyFile file, tempfile
+		return tempfile
+	}
 }

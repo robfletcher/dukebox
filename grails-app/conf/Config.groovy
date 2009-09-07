@@ -68,7 +68,9 @@ log4j = {
 			'org.springframework',
 			'org.hibernate'
 
-	warn 'org.mortbay.log'
+	warn 'org.mortbay.log',
+			'net.jawr',
+			'org.springframework.webflow'
 
 	info 'grails.app.service.dukebox.AlbumArtService'
 
@@ -97,6 +99,7 @@ jawr {
 		bundle {
 			jqueryplugins.mappings = '/js/jquery/plugins/**'
 		}
+		// TODO: bundle for soundmanager
 	}
 	css {
 		bundle.names = 'dukebox'
