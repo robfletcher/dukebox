@@ -12,6 +12,10 @@
           <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/sound-manager-0.4/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/web-app" relative="/" />
           <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jawr-2.8/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/sound-manager-0.4/web-app" relative="/" />
         </webroots>
         <sourceRoots />
         <building>
@@ -182,7 +186,7 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="bean-fields" />
-              <option name="release" value="0.1" />
+              <option name="release" value="0.2" />
               <option name="title" value="Tags for rendering form fields" />
             </GrailsPlugin>
           </value>
@@ -344,7 +348,8 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="codenarc" />
-              <option name="release" value="0.2 (?)" />
+              <option name="release" value="0.3" />
+              <option name="title" value="CodeNarc plugin" />
             </GrailsPlugin>
           </value>
         </entry>
@@ -594,7 +599,7 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="drools-gorm" />
-              <option name="release" value="0.1" />
+              <option name="release" value="0.2" />
               <option name="title" value="Drools GORM" />
             </GrailsPlugin>
           </value>
@@ -827,7 +832,7 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="fsm" />
-              <option name="release" value="0.6" />
+              <option name="release" value="0.6.1" />
               <option name="title" value="Finite State Machine behaviour for domain classes" />
             </GrailsPlugin>
           </value>
@@ -1272,6 +1277,15 @@
             </GrailsPlugin>
           </value>
         </entry>
+        <entry key="jquery-calendar">
+          <value>
+            <GrailsPlugin>
+              <option name="name" value="jquery-calendar" />
+              <option name="release" value="0.2.1" />
+              <option name="title" value="JQuery Calendar" />
+            </GrailsPlugin>
+          </value>
+        </entry>
         <entry key="jsecurity">
           <value>
             <GrailsPlugin>
@@ -1685,6 +1699,15 @@
             </GrailsPlugin>
           </value>
         </entry>
+        <entry key="pretty-date">
+          <value>
+            <GrailsPlugin>
+              <option name="name" value="pretty-date" />
+              <option name="release" value="0.1" />
+              <option name="title" value="Make date object print out human-readable relative timestamp" />
+            </GrailsPlugin>
+          </value>
+        </entry>
         <entry key="pretty-size">
           <value>
             <GrailsPlugin>
@@ -1781,6 +1804,15 @@
               <option name="name" value="remote-constraints" />
               <option name="release" value="0.4.3" />
               <option name="title" value="Remote constraints" />
+            </GrailsPlugin>
+          </value>
+        </entry>
+        <entry key="remote-pagination">
+          <value>
+            <GrailsPlugin>
+              <option name="name" value="remote-pagination" />
+              <option name="release" value="0.2" />
+              <option name="title" value="A Remote Pagination Plugin" />
             </GrailsPlugin>
           </value>
         </entry>
@@ -1896,8 +1928,17 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="selenium" />
-              <option name="release" value="0.5" />
+              <option name="release" value="0.6" />
               <option name="title" value=" " />
+            </GrailsPlugin>
+          </value>
+        </entry>
+        <entry key="session-temp-files">
+          <value>
+            <GrailsPlugin>
+              <option name="name" value="session-temp-files" />
+              <option name="release" value="1.0" />
+              <option name="title" value="Session Temp Files" />
             </GrailsPlugin>
           </value>
         </entry>
@@ -1923,7 +1964,7 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="shopping-cart" />
-              <option name="release" value="0.6" />
+              <option name="release" value="0.7" />
               <option name="title" value="Shopping cart plugin" />
             </GrailsPlugin>
           </value>
@@ -2255,6 +2296,15 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="weceem-acegi" />
+              <option name="release" value="0.1.2" />
+              <option name="title" value="A plugin to add authentication/user management to weceem" />
+            </GrailsPlugin>
+          </value>
+        </entry>
+        <entry key="weceem-menus">
+          <value>
+            <GrailsPlugin>
+              <option name="name" value="weceem-menus" />
               <option name="release" value="no releases" />
               <option name="title" value="No description available" />
             </GrailsPlugin>
@@ -2273,7 +2323,7 @@
           <value>
             <GrailsPlugin>
               <option name="name" value="wordpress" />
-              <option name="release" value="0.1.2" />
+              <option name="release" value="0.1.3" />
               <option name="title" value="Wordpress Plugin" />
             </GrailsPlugin>
           </value>
@@ -2361,7 +2411,28 @@
         </entry>
       </map>
     </option>
-    <option name="fullPluginsInfo" />
+    <option name="fullPluginsInfo">
+      <map>
+        <entry key="session-temp-files">
+          <value>
+            <GrailsPlugin>
+              <option name="author" value="Rob Fletcher" />
+              <option name="description" value="\" />
+              <option name="email" value="rob@energizedwork.com" />
+              <option name="name" value="session-temp-files" />
+              <option name="release" value="1.0" />
+              <option name="title" value="Name: session-temp-files&#9;| Latest release: 1.0" />
+              <option name="url" value="http://grails.org/plugin/session-temp-files" />
+              <option name="versions">
+                <set>
+                  <option value="1.0" />
+                </set>
+              </option>
+            </GrailsPlugin>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -2380,6 +2451,7 @@
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/joda-time-0.5/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/session-temp-files-1.0/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/sound-manager-0.4/grails-app/taglib" isTestSource="false" />
       <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/tomcat-1.2-SNAPSHOT/src/groovy" isTestSource="false" />
     </content>
@@ -2398,6 +2470,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="grails-1.2-SNAPSHOT" level="application" />
     <orderEntry type="library" name="Grails 1.2-SNAPSHOT" level="project" />
     <orderEntry type="module-library">
       <library name="Grails User Library">
