@@ -24,10 +24,7 @@ class TrackController {
 					flow.command = command
 					return error()
 				} else {
-					def tmpdir = new File(System.properties."java.io.tmpdir", session.id)
-					tmpdir.mkdirs()
-					println "Created dir $tmpdir"
-					flow.tempfile = File.createTempFile("upload", ".mp3", tmpdir)
+					flow.tempfile = session.createTempFile("upload", ".mp3")
 					command.file.transferTo flow.tempfile
 				}
 			}.to("createTrack")
@@ -65,7 +62,6 @@ class TrackController {
 				flash.message = "track.created"
 				flash.args = [flow.trackInstance.title, flow.trackInstance.artist]
 				flash.defaultMessage = "$flow.trackInstance uploaded"
-				// TODO: this needs to happen if the flow is abandoned as well
 				flow.tempfile.delete()
 				success()
 			}
