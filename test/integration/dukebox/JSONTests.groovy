@@ -1,14 +1,13 @@
 package dukebox
 
-import dukebox.Track
 import grails.converters.JSON
 import org.joda.time.DateTime
 import org.joda.time.DateTimeZone
-import org.joda.time.format.DateTimeFormat
+import org.joda.time.format.ISODateTimeFormat
 
 class JSONTests extends GroovyTestCase {
 
-	static final JSON_DATE_TIME_FORMAT = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ssZZ")
+	static final JSON_DATE_TIME_FORMAT = ISODateTimeFormat.dateTimeNoMillis()
 
 	void testJSONRendering() {
 		def track = Track.build(
