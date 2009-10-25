@@ -1,7 +1,5 @@
 package dukebox
 
-import dukebox.AbstractFunctionalTestCase
-
 class FileUploadTests extends AbstractFunctionalTestCase {
 
 	File noTagsFile

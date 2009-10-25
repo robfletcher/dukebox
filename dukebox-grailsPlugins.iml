@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="web" name="GrailsWeb">
+      <configuration>
+        <webroots>
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jawr-2.8/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/sound-manager-0.4/web-app" relative="/" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/web-app" relative="/" />
+        </webroots>
+        <sourceRoots />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/grails-app/services" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/build-test-data-0.2.3">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/build-test-data-0.2.3/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/build-test-data-0.2.3/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/build-test-data-0.2.3/grails-app/services" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jawr-2.8">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jawr-2.8/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/joda-time-0.5">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/joda-time-0.5/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/joda-time-0.5/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jquery-1.3.2.4/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/selenium-rc-0.1">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/selenium-rc-0.1/src/java" isTestSource="false" />
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/selenium-rc-0.1/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/session-temp-files-1.0">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/session-temp-files-1.0/src/groovy" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/sound-manager-0.4">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/sound-manager-0.4/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/tomcat-1.2-SNAPSHOT">
+      <sourceFolder url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/tomcat-1.2-SNAPSHOT/src/groovy" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="grails-1.2-SNAPSHOT" level="application" />
+    <orderEntry type="module-library" exported="">
+      <library name="Grails User Library">
+        <CLASSES>
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jawr-2.8/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/tomcat-1.2-SNAPSHOT/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/joda-time-0.5/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/selenium-rc-0.1/lib" />
+          <root url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/acegi-0.5.2/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/functional-test-1.2.7/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/jawr-2.8/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/joda-time-0.5/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/selenium-rc-0.1/lib" recursive="false" />
+        <jarDirectory url="file://$USER_HOME$/.grails/1.2-SNAPSHOT/projects/dukebox/plugins/tomcat-1.2-SNAPSHOT/lib" recursive="false" />
+      </library>
+    </orderEntry>
+  </component>
+</module>
+
